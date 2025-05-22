@@ -241,7 +241,7 @@ export const ModelSelector: React.FC<ModelSelectorProps> = ({
           className="w-64 p-0 overflow-hidden"
           sideOffset={4}
         >
-          <div className="px-3 py-2.5 border-b border-border">
+          {/* <div className="px-3 py-2.5 border-b border-border">
             <div className="flex items-center justify-between">
               <div className="flex flex-col">
                 <span className="text-sm font-medium">Auto-select</span>
@@ -254,9 +254,9 @@ export const ModelSelector: React.FC<ModelSelectorProps> = ({
                 onCheckedChange={handleAutoSelectToggle}
               />
             </div>
-          </div>
+          </div> */}
 
-          {subscriptionStatus !== 'active' && (
+          {/* {subscriptionStatus !== 'active' && (
             <div className="p-3 bg-primary/10 border-b border-border">
               <div className="flex flex-col space-y-2">
                 <div className="flex items-center">
@@ -276,11 +276,11 @@ export const ModelSelector: React.FC<ModelSelectorProps> = ({
                 </Button>
               </div>
             </div>
-          )}
+          )} */}
           
           {!autoSelect && (
             <>
-              <div className="px-3 py-2 border-b border-border">
+              {/* <div className="px-3 py-2 border-b border-border">
                 <div className="relative flex items-center">
                   <Search className="absolute left-2.5 h-3.5 w-3.5 text-muted-foreground pointer-events-none" />
                   <input
@@ -293,7 +293,7 @@ export const ModelSelector: React.FC<ModelSelectorProps> = ({
                     className="w-full h-8 px-8 py-1 rounded-md text-sm focus:outline-none bg-muted"
                   />
                 </div>
-              </div>
+              </div> */}
               
               <div className="max-h-[280px] overflow-y-auto w-full p-1 scrollbar-hide">
                 {filteredOptions.length > 0 ? (

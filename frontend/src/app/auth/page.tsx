@@ -110,7 +110,7 @@ function LoginContent() {
     if (returnUrl) {
       formData.append('returnUrl', returnUrl);
     } else {
-      formData.append('returnUrl', '/dashboard');
+      formData.append('returnUrl', '/');
     }
     const result = await signIn(prevState, formData);
 
@@ -230,7 +230,7 @@ function LoginContent() {
   // Registration success view
   if (registrationSuccess) {
     return (
-      <main className="flex flex-col items-center justify-center min-h-screen w-full">
+      <main className="flex flex-col items-center justify-center h-screen w-full">
         <div className="w-full divide-y divide-border">
           <section className="w-full relative overflow-hidden">
             <div className="relative flex flex-col items-center w-full px-6">
@@ -299,7 +299,7 @@ function LoginContent() {
   }
 
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen w-full">
+    <main className="flex flex-col min-h-screen w-full">
       <div className="w-full divide-y divide-border">
         {/* Hero-like header with flickering grid */}
         <section className="w-full relative overflow-hidden">
@@ -366,7 +366,7 @@ function LoginContent() {
               </Link>
 
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tighter text-center text-balance text-primary">
-                {isSignUp ? 'Join Suna' : 'Welcome back'}
+                {isSignUp ? 'Join Ryxen' : 'Welcome back'}
               </h1>
               <p className="text-base md:text-lg text-center text-muted-foreground font-medium text-balance leading-relaxed tracking-tight mt-2 mb-6">
                 {isSignUp
@@ -377,7 +377,7 @@ function LoginContent() {
           </div>
 
           {/* Auth form card */}
-          <div className="relative z-10 flex justify-center px-6 pb-24">
+          <div className="relative z-10 flex justify-center px-6">
             <div className="w-full max-w-md rounded-xl bg-[#F3F4F6] dark:bg-[#F9FAFB]/[0.02] border border-border p-8">
               {/* Non-registration related messages */}
               {message && !isSuccessMessage && (

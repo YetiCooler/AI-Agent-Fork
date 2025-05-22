@@ -2,6 +2,16 @@
 
 import { createClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
+import { UserRepo } from '@/lib/database/userrepo';
+
+const createUser = async (email: string) => {
+  
+  const user = await UserRepo.findByEmail(email);
+  if (user) {
+    return user;
+  }
+  return await UserRepo.create({ email, pointsUsed: 0, pointsResetDate: new Date(), currentplan: "680f11c0d44970f933ae5e54", disableModel: [], planStartDate: null, planEndDate: null, requestPlanId: null, subscriptionId: null, subscriptionStatus: null, stripeCustomerId: null });
+}
 
 export async function signIn(prevState: any, formData: FormData) {
   const email = formData.get('email') as string;
@@ -28,7 +38,7 @@ export async function signIn(prevState: any, formData: FormData) {
   }
 
   // Use client-side navigation instead of server-side redirect
-  return { success: true, redirectTo: returnUrl || '/dashboard' };
+  return { success: true, redirectTo: returnUrl || '/' };
 }
 
 export async function signUp(prevState: any, formData: FormData) {
@@ -49,6 +59,8 @@ export async function signUp(prevState: any, formData: FormData) {
   if (password !== confirmPassword) {
     return { message: 'Passwords do not match' };
   }
+
+  await createUser(email);
 
   const supabase = await createClient();
 
@@ -78,7 +90,7 @@ export async function signUp(prevState: any, formData: FormData) {
   }
 
   // Use client-side navigation instead of server-side redirect
-  return { success: true, redirectTo: returnUrl || '/dashboard' };
+  return { success: true, redirectTo: returnUrl || '/' };
 }
 
 export async function forgotPassword(prevState: any, formData: FormData) {

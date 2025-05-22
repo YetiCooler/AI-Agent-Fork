@@ -6,9 +6,9 @@ import './globals.css';
 import { Providers } from './providers';
 import { Toaster } from '@/components/ui/sonner';
 import { Analytics } from '@vercel/analytics/react';
-import { GoogleAnalytics } from '@next/third-parties/google';
+// import { GoogleAnalytics } from '@next/third-parties/google';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import Script from 'next/script';
+// import Script from 'next/script';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     template: `%s - ${siteConfig.name}`,
   },
   description:
-    'Suna is a fully open source AI assistant that helps you accomplish real-world tasks with ease. Through natural conversation, Suna becomes your digital companion for research, data analysis, and everyday challenges.',
+    '',
   keywords: [
     'AI',
     'artificial intelligence',
@@ -43,13 +43,13 @@ export const metadata: Metadata = {
     'research',
     'data analysis',
   ],
-  authors: [{ name: 'Kortix Team', url: 'https://suna.so' }],
+  authors: [{ name: 'Ryxen Team', url: 'https://ryxen.ai' }],
   creator:
-    'Kortix Team - Adam Cohen Hillel, Marko Kraemer, Domenico Gagliardi, and Quoc Dat Le',
+    'Ryxen Team - Jay Spark, Lukas Chan',
   publisher:
-    'Kortix Team - Adam Cohen Hillel, Marko Kraemer, Domenico Gagliardi, and Quoc Dat Le',
+    'Ryxen Team - Jay Spark, Lukas Chan',
   category: 'Technology',
-  applicationName: 'Suna',
+  applicationName: 'Ryxen',
   formatDetection: {
     telephone: false,
     email: false,
@@ -64,38 +64,38 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'Suna - Open Source Generalist AI Agent',
+    title: 'Ryxen AI',
     description:
-      'Suna is a fully open source AI assistant that helps you accomplish real-world tasks with ease through natural conversation.',
+      'Ryxen AI is a fully open source AI assistant that helps you accomplish real-world tasks with ease through natural conversation.',
     url: siteConfig.url,
-    siteName: 'Suna',
-    images: [
-      {
-        url: '/banner.png',
-        width: 1200,
-        height: 630,
-        alt: 'Suna - Open Source Generalist AI Agent',
-        type: 'image/png',
-      },
-    ],
+    siteName: 'Ryxen AI',
+    // images: [
+    //   {
+    //     url: '/banner.png',
+    //     width: 1200,
+    //     height: 630,
+    //     alt: 'Ryxen AI',
+    //     type: 'image/png',
+    //   },
+    // ],
     locale: 'en_US',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Suna - Open Source Generalist AI Agent',
+    title: 'Ryxen AI',
     description:
-      'Suna is a fully open source AI assistant that helps you accomplish real-world tasks with ease through natural conversation.',
-    creator: '@kortixai',
-    site: '@kortixai',
-    images: [
-      {
-        url: '/banner.png',
-        width: 1200,
-        height: 630,
-        alt: 'Suna - Open Source Generalist AI Agent',
-      },
-    ],
+      'Ryxen AI is a fully open source AI assistant that helps you accomplish real-world tasks with ease through natural conversation.',
+    creator: '@ryxenai',
+    site: '@ryxenai',
+    // images: [
+    //   {
+    //     url: '/banner.png',
+    //     width: 1200,
+    //     height: 630,
+    //     alt: 'Ryxen AI',
+    //   },
+    // ],
   },
   icons: {
     icon: [{ url: '/favicon.png', sizes: 'any' }],
@@ -116,13 +116,13 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         {/* Google Tag Manager */}
-        <Script id="google-tag-manager" strategy="afterInteractive">
+        {/* <Script id="google-tag-manager" strategy="afterInteractive">
           {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
           new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
           j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
           })(window,document,'script','dataLayer','GTM-PCHSN4M2');`}
-        </Script>
+        </Script> */}
         {/* End Google Tag Manager */}
       </head>
 
@@ -142,7 +142,7 @@ export default function RootLayout({
 
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >
@@ -150,9 +150,9 @@ export default function RootLayout({
             {children}
             <Toaster />
           </Providers>
-          <Analytics />
-          <GoogleAnalytics gaId="G-6ETJFB3PT3" />
-          <SpeedInsights />
+          {/* <Analytics /> */}
+          {/* <GoogleAnalytics gaId="G-6ETJFB3PT3" /> */}
+          {/* <SpeedInsights /> */}
         </ThemeProvider>
       </body>
     </html>

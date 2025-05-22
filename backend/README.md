@@ -1,4 +1,4 @@
-# Suna Backend
+# Ryxen Backend
 
 ## Running the backend
 

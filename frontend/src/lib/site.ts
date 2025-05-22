@@ -1,12 +1,12 @@
 export const siteConfig = {
-  name: 'Kortix Suna',
-  url: 'https://suna.so/',
-  description: 'Kortix AI',
-  links: {
-    twitter: 'https://x.com/kortixai',
-    github: 'https://github.com/kortix-ai/',
-    linkedin: 'https://www.linkedin.com/company/kortix/',
-  },
+  name: 'RYXEN AI',
+  url: 'https://ryxen.ai/',
+  description: 'Ryxen AI',
+  // links: {
+  //   twitter: 'https://x.com/ryxenai',
+  //   github: 'https://github.com/ryxen-ai/',
+  //   linkedin: 'https://www.linkedin.com/company/ryxen/',
+  // },
 };
 
 export type SiteConfig = typeof siteConfig;

@@ -12,6 +12,8 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { useTheme } from 'next-themes';
 import { useAuth } from '@/components/AuthProvider';
+import { useRouter } from 'next/navigation';
+import { createClient } from '@/lib/supabase/client';
 
 const INITIAL_WIDTH = '70rem';
 const MAX_WIDTH = '800px';
@@ -60,6 +62,7 @@ export function Navbar() {
   const { theme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const { user } = useAuth();
+  const router = useRouter();
 
   useEffect(() => {
     setMounted(true);
@@ -96,23 +99,89 @@ export function Navbar() {
     return unsubscribe;
   }, [scrollY]);
 
+  const signOut = async () => {
+    const supabase = await createClient();
+    await supabase.auth.signOut();
+    router.push('/');
+  };
+
   const toggleDrawer = () => setIsDrawerOpen((prev) => !prev);
   const handleOverlayClick = () => setIsDrawerOpen(false);
 
-  const logoSrc = !mounted
-    ? '/kortix-logo.svg'
-    : resolvedTheme === 'dark'
-      ? '/kortix-logo-white.svg'
-      : '/kortix-logo.svg';
+  const logoSrc = '/logo-chat.png'
 
   return (
     <header
       className={cn(
-        'sticky z-50 mx-4 flex justify-center transition-all duration-300 md:mx-0',
-        hasScrolled ? 'top-6' : 'top-4 mx-0',
+        'fixed w-screen z-50 mx-4 flex justify-center transition-all duration-300 md:mx-0',
+        // hasScrolled ? 'top-6' : 
+        'top-4 mx-0',
       )}
     >
-      <motion.div
+      <div
+        className={cn(
+          'mx-auto rounded-2xl transition-all duration-300 xl:px-0',
+          'w-full',
+          // hasScrolled
+          //   ? 'px-2 border border-border backdrop-blur-lg bg-background/75'
+          //   : 'shadow-none px-7',
+        )}
+      >
+        <div className="flex h-[56px] items-center justify-between p-4 w-full">
+          <Link href="/" className="flex items-center gap-3">
+            <Image
+              src={logoSrc}
+              alt="Ryxen AI Logo"
+              width={22}
+              height={22}
+              priority
+            />
+          </Link>
+
+          {/* <NavMenu /> */}
+
+          <div className="flex flex-row items-center gap-1 md:gap-3 shrink-0">
+            <div className="flex items-center space-x-3">
+              {/* <Link
+                  href="https://github.com/ryxen-ai/ryxen"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hidden md:flex items-center justify-center h-8 px-3 text-sm font-normal tracking-wide rounded-full text-primary hover:text-primary/80 transition-colors"
+                  aria-label="GitHub"
+                >
+                  <Github className="size-[18px]" />
+                </Link> */}
+              {
+                !user ?
+                  <Link
+                    className="bg-secondary h-8 hidden md:flex items-center justify-center text-sm font-normal tracking-wide rounded-full text-primary-foreground dark:text-secondary-foreground w-fit px-4 shadow-[inset_0_1px_2px_rgba(255,255,255,0.25),0_3px_3px_-1.5px_rgba(16,24,40,0.06),0_1px_1px_rgba(16,24,40,0.08)] border border-white/[0.12]"
+                    href="/auth"
+                  >
+                    Signup
+                  </Link> :
+                  <button
+                    className="bg-secondary h-8 hidden md:flex items-center justify-center text-sm font-normal tracking-wide rounded-full text-primary-foreground dark:text-secondary-foreground w-fit px-4 shadow-[inset_0_1px_2px_rgba(255,255,255,0.25),0_3px_3px_-1.5px_rgba(16,24,40,0.06),0_1px_1px_rgba(16,24,40,0.08)] border border-white/[0.12] cursor-pointer"
+                    onClick={() => signOut()}
+                  >
+                    Signout
+                  </button>
+              }
+            </div>
+            {/* <ThemeToggle /> */}
+            <button
+              className="md:hidden border border-border size-8 rounded-md cursor-pointer flex items-center justify-center"
+              onClick={toggleDrawer}
+            >
+              {isDrawerOpen ? (
+                <X className="size-5" />
+              ) : (
+                <Menu className="size-5" />
+              )}
+            </button>
+          </div>
+        </div>
+      </div>
+      {/* <motion.div
         initial={{ width: INITIAL_WIDTH }}
         animate={{ width: hasScrolled ? MAX_WIDTH : INITIAL_WIDTH }}
         transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
@@ -130,18 +199,18 @@ export function Navbar() {
               <Image
                 src={logoSrc}
                 alt="Kortix Logo"
-                width={140}
+                width={22}
                 height={22}
                 priority
               />
-            </Link>
+            </Link> */}
 
-            <NavMenu />
+      {/* <NavMenu /> */}
 
-            <div className="flex flex-row items-center gap-1 md:gap-3 shrink-0">
-              <div className="flex items-center space-x-3">
-                {/* <Link
-                  href="https://github.com/kortix-ai/suna"
+      {/* <div className="flex flex-row items-center gap-1 md:gap-3 shrink-0">
+              <div className="flex items-center space-x-3"> */}
+      {/* <Link
+                  href="https://github.com/ryxen-ai/ryxen"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hidden md:flex items-center justify-center h-8 px-3 text-sm font-normal tracking-wide rounded-full text-primary hover:text-primary/80 transition-colors"
@@ -149,7 +218,7 @@ export function Navbar() {
                 >
                   <Github className="size-[18px]" />
                 </Link> */}
-                {user ? (
+      {/* {user ? (
                   <Link
                     className="bg-secondary h-8 hidden md:flex items-center justify-center text-sm font-normal tracking-wide rounded-full text-primary-foreground dark:text-secondary-foreground w-fit px-4 shadow-[inset_0_1px_2px_rgba(255,255,255,0.25),0_3px_3px_-1.5px_rgba(16,24,40,0.06),0_1px_1px_rgba(16,24,40,0.08)] border border-white/[0.12]"
                     href="/dashboard"
@@ -164,9 +233,9 @@ export function Navbar() {
                     Signup
                   </Link>
                 )}
-              </div>
-              <ThemeToggle />
-              <button
+              </div> */}
+      {/* <ThemeToggle /> */}
+      {/* <button
                 className="md:hidden border border-border size-8 rounded-md cursor-pointer flex items-center justify-center"
                 onClick={toggleDrawer}
               >
@@ -179,10 +248,10 @@ export function Navbar() {
             </div>
           </div>
         </div>
-      </motion.div>
+      </motion.div> */}
 
       {/* Mobile Drawer */}
-      <AnimatePresence>
+      {/* <AnimatePresence>
         {isDrawerOpen && (
           <>
             <motion.div
@@ -203,7 +272,7 @@ export function Navbar() {
               variants={drawerVariants}
             >
               {/* Mobile menu content */}
-              <div className="flex flex-col gap-4">
+      {/* <div className="flex flex-col gap-4">
                 <div className="flex items-center justify-between">
                   <Link href="/" className="flex items-center gap-3">
                     <Image
@@ -214,7 +283,7 @@ export function Navbar() {
                       priority
                     />
                     <span className="font-medium text-primary text-sm">
-                      / Suna
+                      / Ryxen
                     </span>
                   </Link>
                   <button
@@ -257,10 +326,10 @@ export function Navbar() {
                       </motion.li>
                     ))}
                   </AnimatePresence>
-                </motion.ul>
+                </motion.ul> */}
 
-                {/* Action buttons */}
-                <div className="flex flex-col gap-2">
+      {/* Action buttons */}
+      {/* <div className="flex flex-col gap-2">
                   {user ? (
                     <Link
                       href="/dashboard"
@@ -275,16 +344,16 @@ export function Navbar() {
                     >
                       Signup
                     </Link>
-                  )}
-                  <div className="flex justify-between">
+                  )} */}
+      {/* <div className="flex justify-between">
                     <ThemeToggle />
-                  </div>
-                </div>
+                  </div> */}
+      {/* </div>
               </div>
             </motion.div>
           </>
         )}
-      </AnimatePresence>
+      </AnimatePresence> */}
     </header>
   );
 }

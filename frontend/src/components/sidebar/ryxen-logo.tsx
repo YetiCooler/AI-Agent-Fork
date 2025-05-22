@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 
-export function KortixLogo() {
+export function RyxenLogo() {
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -16,11 +16,11 @@ export function KortixLogo() {
   return (
     <div className="flex h-6 w-6 items-center justify-center flex-shrink-0">
       <Image
-        src="/kortix-symbol.svg"
-        alt="Kortix"
+        src="/logo-chat.png"
+        alt="Ryxen"
         width={24}
         height={24}
-        className={`${mounted && theme === 'dark' ? 'invert' : ''}`}
+        // className={`${mounted && theme === 'dark' ? 'invert' : ''}`}
       />
     </div>
   );

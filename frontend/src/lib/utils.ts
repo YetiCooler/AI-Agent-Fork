@@ -1,6 +1,7 @@
 import { clsx, type ClassValue } from 'clsx';
 import * as Color from 'color-bits';
-import { twMerge } from 'tailwind-merge';
+import { twMerge } from 'tailwind-merge'; 
+import { sha256 } from 'js-sha256';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -68,3 +69,35 @@ export const hasErrorInput = [
   // ring color
   'ring-red-200 dark:ring-red-700/30',
 ];
+
+export function generateSessionId(email: string, timestamp: string) {
+  return sha256(`${email}-${timestamp}`);
+}
+
+export const processResponse = (response: string) => {
+  const errorMatch = response.match(/\[ERROR\](.*)/);
+  const pointsMatch = response.match(/\[POINTS\](.*)/);
+  const outputTimeMatch = response.match(/\[OUTPUT_TIME\](.*)/);
+
+  if (errorMatch) {
+      return { mainResponse: response, points: null, outputTime: null, error: errorMatch[1] };
+  }
+
+  if (pointsMatch || outputTimeMatch) {
+      const mainResponse = response.substring(0, pointsMatch?.index || outputTimeMatch?.index || response.length).trim();
+      const points = pointsMatch ? pointsMatch[1] : null;
+      const outputTime = outputTimeMatch ? outputTimeMatch[1] : null;
+      return { mainResponse, points, outputTime };
+  }
+  return { mainResponse: response, points: null, outputTime: null };
+};
+
+export const formatNumber = (num: number): string => {
+  if (num >= 1000000) {
+      return (num / 1000000).toFixed(0) + 'M';
+  }
+  if (num >= 1000) {
+      return (num / 1000).toFixed(0) + 'k';
+  }
+  return num.toFixed(2).toString();
+};

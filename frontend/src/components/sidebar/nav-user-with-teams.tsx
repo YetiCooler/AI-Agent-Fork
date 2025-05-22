@@ -204,7 +204,7 @@ export function NavUserWithTeams({
               <DropdownMenuSeparator />
 
               {/* Teams Section */}
-              {personalAccount && (
+              {/* {personalAccount && (
                 <>
                   <DropdownMenuLabel className="text-muted-foreground text-xs">
                     Personal Account
@@ -230,9 +230,9 @@ export function NavUserWithTeams({
                     <DropdownMenuShortcut>⌘1</DropdownMenuShortcut>
                   </DropdownMenuItem>
                 </>
-              )}
+              )} */}
 
-              {teamAccounts?.length > 0 && (
+              {/* {teamAccounts?.length > 0 && (
                 <>
                   <DropdownMenuLabel className="text-muted-foreground text-xs mt-2">
                     Teams
@@ -260,7 +260,7 @@ export function NavUserWithTeams({
                     </DropdownMenuItem>
                   ))}
                 </>
-              )}
+              )} */}
 
               {/* <DropdownMenuSeparator />
               <DialogTrigger asChild>
@@ -276,23 +276,23 @@ export function NavUserWithTeams({
                   <div className="text-muted-foreground font-medium">Add team</div>
                 </DropdownMenuItem>
               </DialogTrigger> */}
-              <DropdownMenuSeparator />
+              {/* <DropdownMenuSeparator /> */}
 
               {/* User Settings Section */}
-              <DropdownMenuGroup>
-                <DropdownMenuItem asChild>
+              {/* <DropdownMenuGroup> */}
+                {/* <DropdownMenuItem asChild>
                   <Link href="/settings/billing">
                     <CreditCard className="h-4 w-4" />
                     Billing
                   </Link>
-                </DropdownMenuItem>
+                </DropdownMenuItem> */}
                 {/* <DropdownMenuItem asChild>
                   <Link href="/settings">
                     <Settings className="mr-2 h-4 w-4" />
                     Settings
                   </Link>
                 </DropdownMenuItem> */}
-                <DropdownMenuItem
+                {/* <DropdownMenuItem
                   onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
                 >
                   <div className="flex items-center gap-2">
@@ -300,9 +300,9 @@ export function NavUserWithTeams({
                     <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
                     <span>Theme</span>
                   </div>
-                </DropdownMenuItem>
-              </DropdownMenuGroup>
-              <DropdownMenuSeparator />
+                </DropdownMenuItem> */}
+              {/* </DropdownMenuGroup> */}
+              {/* <DropdownMenuSeparator /> */}
               <DropdownMenuItem className='text-destructive focus:text-destructive focus:bg-destructive/10' onClick={handleLogout}>
                 <LogOut className="h-4 w-4 text-destructive" />
                 Log out

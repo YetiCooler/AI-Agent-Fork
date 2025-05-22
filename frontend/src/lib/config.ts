@@ -149,3 +149,36 @@ export const isLocalMode = (): boolean => {
 
 // Export subscription tier type for typing elsewhere
 export type SubscriptionTier = keyof typeof PROD_TIERS;
+
+export const Credits = {
+  "free": 2,
+  "pro": 20
+}
+
+export const ChatTypeItems = [
+  {
+    id: "normal",
+    label: "Normal Chat",
+    image: "/image/Edith_Logo.png"
+  },
+  {
+    id: "faster",
+    label: "Faster x30",
+    image: "/image/pro.png"
+  },
+]
+
+export const ModelType = [
+  {
+    id: "text",
+    label: "Text Generation",
+  },
+  // {
+  //   id: "image",
+  //   label: "Image Generation",
+  // },
+  // {
+  //   id: "audio",
+  //   label: "Audio Generation",
+  // }
+]

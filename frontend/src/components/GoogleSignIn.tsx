@@ -79,7 +79,7 @@ export default function GoogleSignIn({ returnUrl }: GoogleSignInProps) {
 
         console.log('Starting Google sign in process');
 
-        const { error } = await supabase.auth.signInWithIdToken({
+        const { error, data } = await supabase.auth.signInWithIdToken({
           provider: 'google',
           token: response.credential,
         });
@@ -88,13 +88,21 @@ export default function GoogleSignIn({ returnUrl }: GoogleSignInProps) {
 
         console.log(
           'Google sign in successful, preparing redirect to:',
-          returnUrl || '/dashboard',
+          returnUrl || '/',
         );
 
+        const result = await fetch('/api/auth/signup', {
+          method: 'POST',
+          body: JSON.stringify({ email: data.user?.email }),
+        });
+      
+        if (!result.ok) {
+          return { message: 'Could not create account' };
+        }
         // Add a longer delay before redirecting to ensure localStorage is properly saved
         setTimeout(() => {
-          console.log('Executing redirect now to:', returnUrl || '/dashboard');
-          window.location.href = returnUrl || '/dashboard';
+          console.log('Executing redirect now to:', returnUrl || '/');
+          window.location.href = returnUrl || '/';
         }, 500); // Increased from 100ms to 500ms
       } catch (error) {
         console.error('Error signing in with Google:', error);

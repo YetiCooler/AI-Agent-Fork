@@ -6,8 +6,8 @@ import { Menu } from 'lucide-react';
 
 import { NavAgents } from '@/components/sidebar/nav-agents';
 import { NavUserWithTeams } from '@/components/sidebar/nav-user-with-teams';
-import { KortixLogo } from '@/components/sidebar/kortix-logo';
-import { CTACard } from '@/components/sidebar/cta';
+import { RyxenLogo } from '@/components/sidebar/ryxen-logo';
+// import { CTACard } from '@/components/sidebar/cta';
 import {
   Sidebar,
   SidebarContent,
@@ -92,12 +92,12 @@ export function SidebarLeft({
     >
       <SidebarHeader className="px-2 py-2">
         <div className="flex h-[40px] items-center px-1 relative">
-          <Link href="/dashboard">
-            <KortixLogo />
+          <Link href="/">
+            <RyxenLogo />
           </Link>
           {state !== 'collapsed' && (
             <div className="ml-2 transition-all duration-200 ease-in-out whitespace-nowrap">
-              {/* <span className="font-semibold"> SUNA</span> */}
+              {/* <span className="font-semibold"> RYXEN</span> */}
             </div>
           )}
           <div className="ml-auto flex items-center gap-2">
@@ -128,11 +128,11 @@ export function SidebarLeft({
       <SidebarContent className="[&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
         <NavAgents />
       </SidebarContent>
-      {state !== 'collapsed' && (
+      {/* {state !== 'collapsed' && (
         <div className="px-3 py-2">
           <CTACard />
         </div>
-      )}
+      )} */}
       <SidebarFooter>
         {state === 'collapsed' && (
           <div className="mt-2 flex justify-center">

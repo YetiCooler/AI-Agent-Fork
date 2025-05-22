@@ -1,4 +1,4 @@
-# Suna frontend
+# Ryxen frontend
 
 ## Getting Started
 
