@@ -91,7 +91,7 @@ export default function GoogleSignIn({ returnUrl }: GoogleSignInProps) {
           returnUrl || '/',
         );
 
-        const result = await fetch('/api/auth/signup', {
+        const result = await fetch('/api/signup', {
           method: 'POST',
           body: JSON.stringify({ email: data.user?.email }),
         });
@@ -194,7 +194,7 @@ export default function GoogleSignIn({ returnUrl }: GoogleSignInProps) {
             if (buttonContainer) {
               window.google.accounts.id.renderButton(buttonContainer, {
                 type: 'standard',
-                theme: resolvedTheme === 'dark' ? 'filled_black' : 'outline',
+                theme: 'dark',
                 size: 'large',
                 text: 'continue_with',
                 shape: 'pill',
