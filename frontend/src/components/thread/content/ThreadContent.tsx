@@ -12,7 +12,7 @@ import {
     getToolIcon,
     safeJsonParse,
 } from '@/components/thread/utils';
-import { KortixLogo } from '@/components/sidebar/ryxen-logo';
+import { RyxenLogo } from '@/components/sidebar/ryxen-logo';
 
 // Define the set of tags whose raw XML should be hidden during streaming
 const HIDE_STREAMING_XML_TAGS = new Set([
@@ -375,7 +375,7 @@ export const ThreadContent: React.FC<ThreadContentProps> = ({
                                             <div key={group.key} ref={groupIndex === groupedMessages.length - 1 ? latestMessageRef : null}>
                                                 <div className="flex items-start gap-3">
                                                     <div className="flex-shrink-0 w-5 h-5 mt-2 rounded-md flex items-center justify-center ml-auto mr-2">
-                                                    <KortixLogo />
+                                                    <RyxenLogo />
                                                     </div>
                                                     <div className="flex-1">
                                                         <div className="inline-flex max-w-[90%] rounded-lg px-4 text-sm">
@@ -598,7 +598,7 @@ export const ThreadContent: React.FC<ThreadContentProps> = ({
                                     <div ref={latestMessageRef}>
                                         <div className="flex items-start gap-3">
                                             <div className="flex-shrink-0 w-5 h-5 rounded-md flex items-center justify-center bg-primary/10">
-                                            <KortixLogo />
+                                            <RyxenLogo />
                                             </div>
                                             <div className="flex-1 space-y-2">
                                                 <div className="max-w-[90%] px-4 py-3 text-sm">
@@ -618,7 +618,7 @@ export const ThreadContent: React.FC<ThreadContentProps> = ({
                                 <div ref={latestMessageRef}>
                                     <div className="flex items-start gap-3">
                                         <div className="flex-shrink-0 w-5 h-5 mt-2 rounded-md flex items-center justify-center bg-primary/10">
-                                            <KortixLogo />
+                                            <RyxenLogo />
                                         </div>
                                         <div className="flex-1 space-y-2">
                                             <div className="inline-flex items-center gap-1.5 py-1.5 px-3 text-xs font-medium text-primary bg-primary/10 rounded-md border border-primary/20">
@@ -637,7 +637,7 @@ export const ThreadContent: React.FC<ThreadContentProps> = ({
                                 <div ref={latestMessageRef}>
                                     <div className="flex items-start gap-3">
                                         <div className="flex-shrink-0 w-5 h-5 mt-2 rounded-md flex items-center justify-center bg-primary/10">
-                                        <KortixLogo />
+                                        <RyxenLogo />
                                         </div>
                                         <div className="flex-1 space-y-2">
                                             <div className="max-w-[90%] px-4 py-3 text-sm">

@@ -59,7 +59,7 @@ const DialogModelMenu = () => {
                     setRouterModels(data.data);
                     if (!routerModel) {
                         setItemTitle(data.data[0].name);
-                        !routerModel && setRouterModel(data.data[0]._id);
+                        setRouterModel(data.data[0]._id);
                     } else {
                         setItemTitle(routerModels.find((item) => item._id === routerModel)?.name || "");
                     }
@@ -74,7 +74,10 @@ const DialogModelMenu = () => {
         if (!menuId) {
             setMenuId(ModelType[0].id);
         }
-        routerModels.length == 0 && fetchRouterModels();
+
+        if (routerModels.length == 0) {
+            fetchRouterModels();
+        }
         if (routerModel && routerModels.length > 0) {
             setItemTitle(routerModels.find((item) => item._id === routerModel)?.name || "");
             setMenuId(routerModels.find((item) => item._id === routerModel)?.type || "");
