@@ -194,7 +194,7 @@ export default function GoogleSignIn({ returnUrl }: GoogleSignInProps) {
             if (buttonContainer) {
               window.google.accounts.id.renderButton(buttonContainer, {
                 type: 'standard',
-                theme: 'dark',
+                theme: resolvedTheme === 'dark' ? 'filled_black' : 'outline',
                 size: 'large',
                 text: 'continue_with',
                 shape: 'pill',
@@ -211,7 +211,7 @@ export default function GoogleSignIn({ returnUrl }: GoogleSignInProps) {
                   googleButton.style.width = '100%';
                   googleButton.style.height = '56px';
                   googleButton.style.border = '1px solid var(--border)';
-                  googleButton.style.background = 'var(--background)';
+                  googleButton.style.backgroundColor = '#111112';
                   googleButton.style.transition = 'all 0.2s';
                 }
               }, 100);
