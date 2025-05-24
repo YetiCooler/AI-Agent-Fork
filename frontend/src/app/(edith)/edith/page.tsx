@@ -24,10 +24,10 @@ const ChatText = () => {
                     alt="logo"
                     width={300}
                     height={300}
-                    className="h-[60px] sm:h-[92px] w-auto"
+                    className="h-[60px] sm:h-[64px] w-auto"
                   />
                 </div>
-                <span className="text-[16px] sm:text-[24px] text-white mt-6 text-center mb-[60px]">
+                <span className="text-[16px] sm:text-[18px] text-white mt-6 text-center mb-[34px]">
                   Every Day I&apos;m Theoretically Human
                 </span>
               </div>

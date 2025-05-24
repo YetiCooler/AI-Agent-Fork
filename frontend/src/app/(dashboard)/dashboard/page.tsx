@@ -284,10 +284,11 @@ function DashboardContent() {
 
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[650px] max-w-[90%]">
         <div className="flex flex-col items-center text-center mb-2 w-full">
-          <h1 className={cn('tracking-tight text-4xl font-semibold leading-tight')}>
+          {/* <h1 className={cn('tracking-tight text-4xl font-semibold leading-tight')}>
             Hey
-          </h1>
-          <p className="tracking-tight text-3xl font-normal text-muted-foreground/80 mt-2 flex items-center gap-2">
+          </h1> */}
+          <Image src="/logo-chat.png" alt="logo" width={64} height={64} />
+          <p className="tracking-tight text-[18px] font-normal text-white mt-6 flex items-center gap-2">
             What would you like Ultron to do today?
           </p>
         </div>

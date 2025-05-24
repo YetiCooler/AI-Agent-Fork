@@ -33,8 +33,8 @@ const ChatSettingMenu: React.FC<ChatSettingMenuProps> = ({ files }) => {
         <DropdownMenu onOpenChange={setIsOpen}>
             <DropdownMenuTrigger className={`p-0 bg-transparent border-none focus:outline-none`}>
                 <ShadowBtn
-                    className={`rounded-full hover:bg-btn-shadow focus:bg-btn-shadow ${!isOpen && 'border-transparent bg-transparent'}`}
-                    mainClassName={`hover:border-[#2C2B30] focus:border-[#2C2B30] hover:bg-[#292929] focus:bg-[#292929] shadow-btn-google w-[38px] h-[38px] text-white py-2 px-2 gap-0 rounded-full flex flex-col items-center justify-center ${!isOpen ? 'border-transparent bg-transparent' : 'border-[#2C2B30]'}`}
+                    className={`rounded-md hover:bg-btn-shadow focus:bg-btn-shadow ${!isOpen && 'border-transparent bg-transparent'}`}
+                    mainClassName={`hover:border-[#2C2B30] focus:border-[#2C2B30] hover:bg-[#292929] focus:bg-[#292929] shadow-btn-google w-[38px] h-[38px] text-white py-2 px-2 gap-0 rounded-md flex flex-col items-center justify-center ${!isOpen ? 'border-transparent bg-transparent' : 'border-[#2C2B30]'}`}
                 >
                     <ChatSetupIcon />
                 </ShadowBtn>

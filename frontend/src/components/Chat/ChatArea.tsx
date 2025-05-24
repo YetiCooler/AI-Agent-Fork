@@ -41,8 +41,8 @@ const ChatArea = () => {
                 <Image
                   src="/logo-chat.png"
                   alt="chat loading"
-                  width={100}
-                  height={100}
+                  width={64}
+                  height={64}
                   className={`w-6 h-6 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2`}
                 />
               </div>

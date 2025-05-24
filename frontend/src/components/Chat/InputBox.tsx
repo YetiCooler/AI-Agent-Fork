@@ -734,13 +734,13 @@ const InputBox = () => {
   return (
     <div
       className={`${isStartChat ? "w-full" : ""
-        } bg-box-bg mt-[10px] w-full lg:max-w-[700px] border rounded-[12px] md:rounded-[24px] border-[#25252799] flex flex-col shadow-input-box`}
+        } bg-sidebar mt-[10px] w-full lg:max-w-[620px] border rounded-[12px] border-[#25252799] flex flex-col shadow-input-box`}
     >
       <div className="flex flex-col py-2">
         <div className="flex w-full justify-between items-center px-4 py-2">
           <textarea
             ref={textareaRef}
-            className={`${isStreaming ? '' : "text-mainFont"} bg-transparent pt-2 border-none w-full h-[36px] font-semibold text-base placeholder:text-[#FFFFFF33] overflow-y-hidden outline-none resize-none`}
+            className={`bg-transparent pt-2 border-none w-full h-[36px] font-semibold text-[14px] placeholder:text-muted-foreground overflow-y-hidden outline-none resize-none`}
             placeholder="How can EDITH help you today?"
             onKeyDown={keyDownHandler}
             value={inputPrompt}
@@ -753,9 +753,9 @@ const InputBox = () => {
             }}
           />
           <button
-            className={`${isStreaming || isFileUploading ? "opacity-50 cursor-not-allowed" : ""} flex items-center justify-center p-2 rounded-full border-secondaryBorder bg-input-box hover:border-tertiaryBorder focus:outline-none w-9 h-9 text-mainFont sm:hidden`}
+            className={`${isStreaming || isFileUploading || !inputPrompt || inputPrompt.trim() == "" ? "opacity-50 cursor-not-allowed" : ""} flex items-center justify-center p-2 rounded-md border-secondaryBorder bg-primary hover:border-tertiaryBorder focus:outline-none w-9 h-9 text-mainFont sm:hidden`}
             onClick={(e) => handleClickSend(e)}
-            disabled={isStreaming || isFileUploading}
+            disabled={isStreaming || isFileUploading || !inputPrompt || inputPrompt.trim() == ""}
           >
             {isStreaming ? (
               <Loader2 className="w-auto h-full animate-spin text-black" />
@@ -771,8 +771,8 @@ const InputBox = () => {
             {
               isFileUploading ? (
                 <ShadowBtn
-                  className="rounded-full"
-                  mainClassName="border-[#2C2B30] border shadow-btn-google w-[38px] h-[38px] text-white py-2 px-2 gap-0 rounded-full flex flex-col items-center justify-center"
+                  className="rounded-md"
+                  mainClassName="border-[#2C2B30] border shadow-btn-google w-[38px] h-[38px] text-white py-2 px-2 gap-0 rounded-md flex flex-col items-center justify-center"
                   disabled={true}
                 >
                   <Loader2 className="w-auto h-full animate-spin text-black" />
@@ -789,8 +789,8 @@ const InputBox = () => {
                   />
                 ) : (
                   <ShadowBtn
-                    className="rounded-full bg-transparent hover:bg-btn-shadow"
-                    mainClassName="hover:border-[#2C2B30] hover:border bg-transparent hover:bg-[#292929] shadow-btn-google w-[38px] h-[38px] text-white py-2 px-2 gap-0 rounded-full flex flex-col items-center justify-center"
+                    className="rounded-md bg-transparent hover:bg-btn-shadow"
+                    mainClassName="hover:border-[#2C2B30] hover:border bg-transparent hover:bg-[#292929] shadow-btn-google w-[38px] h-[38px] text-white py-2 px-2 gap-0 rounded-md flex flex-col items-center justify-center"
                     onClick={handleClickPlusIcon}
                   >
                     <PlusIcon />
@@ -893,9 +893,9 @@ const InputBox = () => {
           <DialogModelMenu />
         </div>
         <button
-          className={`${isStreaming || isFileUploading ? "opacity-50 cursor-not-allowed" : ""} flex items-center justify-center p-2 rounded-full border-[#333333] bg-input-box hover:border-[#CCCCCC] focus:outline-none w-9 h-9 text-mainFont max-sm:hidden`}
+          className={`${isStreaming || isFileUploading || !inputPrompt || inputPrompt.trim() == "" ? "opacity-50 cursor-not-allowed" : ""} flex items-center justify-center p-2 rounded-md border-[#333333] bg-primary hover:border-[#CCCCCC] focus:outline-none w-9 h-9 text-primary max-sm:hidden`}
           onClick={(e) => handleClickSend(e)}
-          disabled={isStreaming || isFileUploading}
+          disabled={isStreaming || isFileUploading || !inputPrompt || inputPrompt.trim() == ""}
         >
           {isStreaming ? (
             <Loader2 className="w-auto h-full animate-spin text-black" />
