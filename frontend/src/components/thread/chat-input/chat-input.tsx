@@ -196,15 +196,15 @@ export const ChatInput = forwardRef<ChatInputHandles, ChatInputProps>(
           }}
         >
           <div className="w-full text-sm flex flex-col justify-between items-start rounded-lg">
-            <CardContent className="w-full p-1.5 pb-2 bg-sidebar rounded-2xl border">
-              <AttachmentGroup
+            <CardContent className="w-full p-1.5 pb-2 pt-4 bg-sidebar rounded-2xl border">
+              {/* <AttachmentGroup
                 files={uploadedFiles || []}
                 sandboxId={sandboxId}
                 onRemove={removeUploadedFile}
                 layout="inline"
                 maxHeight="216px"
                 showPreviews={true}
-              />
+              /> */}
 
               <MessageInput
                 ref={textareaRef}
@@ -225,6 +225,7 @@ export const ChatInput = forwardRef<ChatInputHandles, ChatInputProps>(
                 setPendingFiles={setPendingFiles}
                 setUploadedFiles={setUploadedFiles}
                 setIsUploading={setIsUploading}
+                removeUploadedFile={removeUploadedFile}
                 hideAttachments={hideAttachments}
 
                 selectedModel={selectedModel}

@@ -893,7 +893,7 @@ const InputBox = () => {
           <DialogModelMenu />
         </div>
         <button
-          className={`${isStreaming || isFileUploading ? "opacity-50 cursor-not-allowed" : ""} flex items-center justify-center p-2 rounded-full border-secondaryBorder bg-input-box hover:border-tertiaryBorder focus:outline-none w-9 h-9 text-mainFont max-sm:hidden`}
+          className={`${isStreaming || isFileUploading ? "opacity-50 cursor-not-allowed" : ""} flex items-center justify-center p-2 rounded-full border-[#333333] bg-input-box hover:border-[#CCCCCC] focus:outline-none w-9 h-9 text-mainFont max-sm:hidden`}
           onClick={(e) => handleClickSend(e)}
           disabled={isStreaming || isFileUploading}
         >

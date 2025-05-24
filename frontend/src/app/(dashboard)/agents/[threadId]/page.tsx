@@ -948,7 +948,7 @@ export default function ThreadPage({
   useEffect(() => {
     if (projectName) {
       // Update document title when project name changes
-      document.title = `${projectName} | Kortix Ryxen`;
+      document.title = `${projectName} | Ryxen`;
 
       // Update meta tags for SEO
       const metaDescription = document.querySelector(
@@ -957,14 +957,14 @@ export default function ThreadPage({
       if (metaDescription) {
         metaDescription.setAttribute(
           'content',
-          `${projectName} - Interactive agent conversation powered by Kortix Ryxen`,
+          `${projectName} - Interactive agent conversation powered by Ryxen`,
         );
       }
 
       // Update OpenGraph tags if they exist
       const ogTitle = document.querySelector('meta[property="og:title"]');
       if (ogTitle) {
-        ogTitle.setAttribute('content', `${projectName} | Kortix Ryxen`);
+        ogTitle.setAttribute('content', `${projectName} | Ryxen`);
       }
 
       const ogDescription = document.querySelector(
@@ -1201,8 +1201,8 @@ export default function ThreadPage({
 
           <div
             className={cn(
-              "fixed bottom-0 z-10 bg-gradient-to-t from-background via-background/90 to-transparent px-4 pt-8 transition-all duration-200 ease-in-out",
-              leftSidebarState === 'expanded' ? 'left-[72px] lg:left-[256px]' : 'left-[72px]',
+              "fixed bottom-0 z-10 bg-gradient-to-t from-background via-background/90 to-transparent pt-8 transition-all duration-200 ease-in-out",
+              leftSidebarState === 'expanded' ? 'left-[0px] lg:left-[256px]' : 'left-[0px]',
               isSidePanelOpen ? 'right-[90%] sm:right-[450px] md:right-[500px] lg:right-[550px] xl:right-[650px]' : 'right-0',
               isMobile ? 'left-0 right-0' : ''
             )}>
@@ -1214,7 +1214,7 @@ export default function ThreadPage({
                 value={newMessage}
                 onChange={setNewMessage}
                 onSubmit={handleSubmitMessage}
-                placeholder="Ask Ryxen anything..."
+                placeholder="Ask Ultron anything..."
                 loading={isSending}
                 disabled={isSending || agentStatus === 'running' || agentStatus === 'connecting'}
                 isAgentRunning={agentStatus === 'running' || agentStatus === 'connecting'}
@@ -1255,16 +1255,16 @@ export default function ThreadPage({
           />
         )}
 
-        <BillingErrorAlert
+        {/* <BillingErrorAlert
           message={billingData.message}
           currentUsage={billingData.currentUsage}
           limit={billingData.limit}
           accountId={billingData.accountId}
           onDismiss={() => setShowBillingAlert(false)}
           isOpen={showBillingAlert}
-        />
+        /> */}
 
-        <Dialog open={showUpgradeDialog} onOpenChange={setShowUpgradeDialog}>
+        {/* <Dialog open={showUpgradeDialog} onOpenChange={setShowUpgradeDialog}>
           <DialogContent onPointerDownOutside={(e) => e.preventDefault()} className="sm:max-w-md">
             <DialogHeader>
               <DialogTitle className="flex items-center">
@@ -1323,7 +1323,7 @@ export default function ThreadPage({
               </Button>
             </DialogFooter>
           </DialogContent>
-        </Dialog>
+        </Dialog> */}
       </div>
     );
   }

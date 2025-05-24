@@ -25,6 +25,7 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 import { useIsMobile } from '@/hooks/use-mobile';
+import DoubleRightArrow from '../assets/doubleRightArrow';
 
 export function SidebarLeft({
   ...props
@@ -85,6 +86,7 @@ export function SidebarLeft({
   }, [state, setOpen]);
 
   return (
+    isMobile &&
     <Sidebar
       collapsible="icon"
       className="border-r-0 bg-background/95 backdrop-blur-sm [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']"
@@ -101,25 +103,26 @@ export function SidebarLeft({
             </div>
           )}
           <div className="ml-auto flex items-center gap-2">
-            {state !== 'collapsed' && (
+            {/* {state !== 'collapsed' && (
               <Tooltip>
                 <TooltipTrigger asChild>
                   <SidebarTrigger className="h-8 w-8" />
                 </TooltipTrigger>
                 <TooltipContent>Toggle sidebar (CMD+B)</TooltipContent>
               </Tooltip>
-            )}
+            )} */}
             {isMobile && (
               <Tooltip>
                 <TooltipTrigger asChild>
                   <button
-                    onClick={() => setOpenMobile(true)}
+                    onClick={() => setOpenMobile(false)}
                     className="h-8 w-8 flex items-center justify-center rounded-md hover:bg-accent"
                   >
-                    <Menu className="h-4 w-4" />
+                    {/* <Menu className="h-4 w-4" /> */}
+                    <DoubleRightArrow />
                   </button>
                 </TooltipTrigger>
-                <TooltipContent>Open menu</TooltipContent>
+                <TooltipContent>Close menu</TooltipContent>
               </Tooltip>
             )}
           </div>
@@ -133,9 +136,9 @@ export function SidebarLeft({
           <CTACard />
         </div>
       )} */}
-      <SidebarFooter>
+      {/* <SidebarFooter>
         {state === 'collapsed' && (
-          <div className="mt-2 flex justify-center">
+          <div className="mt-2 flex justify-end">
             <Tooltip>
               <TooltipTrigger asChild>
                 <SidebarTrigger className="h-8 w-8" />
@@ -145,7 +148,7 @@ export function SidebarLeft({
           </div>
         )}
         <NavUserWithTeams user={user} />
-      </SidebarFooter>
+      </SidebarFooter> */}
       <SidebarRail />
     </Sidebar>
   );

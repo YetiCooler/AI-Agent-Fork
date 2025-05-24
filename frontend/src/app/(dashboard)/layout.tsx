@@ -94,11 +94,11 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           accountId={personalAccount?.account_id}
           /> */}
 
-        <MaintenanceAlert
+        {/* <MaintenanceAlert
           open={showMaintenanceAlert}
           onOpenChange={setShowMaintenanceAlert}
           closeable={true}
-        />
+        /> */}
 
         {/* Status overlay for deletion operations */}
         <StatusOverlay />

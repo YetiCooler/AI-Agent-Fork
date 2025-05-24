@@ -27,10 +27,17 @@ import {
 } from '@/components/ui/tooltip';
 import { useBillingError } from '@/hooks/useBillingError';
 import { BillingErrorAlert } from '@/components/billing/usage-limit-alert';
+import SidebarDialog from '@/components/sidebar/sidebar-dialog';
 import { useAccounts } from '@/hooks/use-accounts';
 import { isLocalMode, config } from '@/lib/config';
 import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
+import DropDownMenu from '@/components/headers/DropDownMenu';
+import ProfileDropDownMenu from '@/components/headers/ProfileDropDownMenu';
+import MobileDropDownMenu from '@/components/headers/MobileDropDownMenu';
+import HistoryIcon from '@/components/assets/history';
+import NewChatIcon from '@/components/assets/newChat';
+import Link from 'next/link';
 
 // Constant for localStorage key to ensure consistency
 const PENDING_PROMPT_KEY = 'pendingAgentPrompt';
@@ -47,6 +54,7 @@ function DashboardContent() {
   const { data: accounts } = useAccounts();
   const personalAccount = accounts?.find((account) => account.personal_account);
   const chatInputRef = useRef<ChatInputHandles>(null);
+  const [open, setOpen] = useState(false);
 
   const secondaryGradient =
     'bg-gradient-to-r from-blue-500 to-blue-500 bg-clip-text text-transparent';
@@ -104,17 +112,17 @@ function DashboardContent() {
       console.error('Error during submission process:', error);
       if (error instanceof BillingError) {
         console.log('Handling BillingError:', error.detail);
-        handleBillingError({
-          message:
-            error.detail.message ||
-            'Monthly usage limit reached. Please upgrade your plan.',
-          currentUsage: error.detail.currentUsage as number | undefined,
-          limit: error.detail.limit as number | undefined,
-          subscription: error.detail.subscription || {
-            price_id: config.SUBSCRIPTION_TIERS.FREE.priceId,
-            plan_name: 'Free',
-          },
-        });
+        // handleBillingError({
+        //   message:
+        //     error.detail.message ||
+        //     'Monthly usage limit reached. Please upgrade your plan.',
+        //   currentUsage: error.detail.currentUsage as number | undefined,
+        //   limit: error.detail.limit as number | undefined,
+        //   subscription: error.detail.subscription || {
+        //     price_id: config.SUBSCRIPTION_TIERS.FREE.priceId,
+        //     plan_name: 'Free',
+        //   },
+        // });
         setIsSubmitting(false);
         return;
       }
@@ -157,23 +165,74 @@ function DashboardContent() {
 
   return (
     <div className="flex flex-col items-center justify-center h-full w-full">
-      {isMobile && (
-        <div className="absolute top-4 left-4 z-10">
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="h-8 w-8"
-                onClick={() => setOpenMobile(true)}
-              >
-                <Menu className="h-4 w-4" />
-                <span className="sr-only">Open menu</span>
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>Open menu</TooltipContent>
-          </Tooltip>
-        </div>
+      {isMobile ? (
+        <>
+          <div className="absolute top-4 left-4 z-10 flex items-center gap-1">
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-8 w-8"
+                  onClick={() => setOpenMobile(true)}
+                >
+                  <HistoryIcon className="h-4 w-4" />
+                  <span className="sr-only">Open menu</span>
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>History</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Link href="/dashboard">
+                  <NewChatIcon className="h-4 w-4" />
+                  <span className="sr-only">New Agent</span>
+                </Link>
+              </TooltipTrigger>
+              <TooltipContent>New Agent</TooltipContent>
+            </Tooltip>
+          </div>
+          <div className='absolute top-8 left-1/2 -translate-x-1/2 transform z-10'>
+            <DropDownMenu />
+          </div>
+          <div className='absolute top-4 right-4 z-10'>
+            <MobileDropDownMenu endpoint="dashboard" />
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="absolute top-4 left-4 z-10 flex items-center gap-1">
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-8 w-8"
+                  onClick={() => setOpen(true)}
+                >
+                  <HistoryIcon className="h-4 w-4" />
+                  <span className="sr-only">Open menu</span>
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>History</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Link href="/dashboard">
+                  <NewChatIcon className="h-4 w-4" />
+                  <span className="sr-only">New Agent</span>
+                </Link>
+              </TooltipTrigger>
+              <TooltipContent>New Agent</TooltipContent>
+            </Tooltip>
+          </div>
+          <div className='absolute top-8 left-1/2 -translate-x-1/2 transform z-10'>
+            <DropDownMenu />
+          </div>
+          <div className='absolute top-4 right-4 z-10'>
+            <ProfileDropDownMenu endpoint="dashboard" />
+          </div>
+        </>
       )}
 
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[650px] max-w-[90%]">
@@ -196,16 +255,17 @@ function DashboardContent() {
           hideAttachments={false}
         />
       </div>
+      <SidebarDialog open={open} onOpenChange={setOpen} />
 
       {/* Billing Error Alert */}
-      <BillingErrorAlert
+      {/* <BillingErrorAlert
         message={billingError?.message}
         currentUsage={billingError?.currentUsage}
         limit={billingError?.limit}
         accountId={personalAccount?.account_id}
         onDismiss={clearBillingError}
         isOpen={!!billingError}
-      />
+      /> */}
     </div>
   );
 }

@@ -1,7 +1,7 @@
 'use client';
 
 import { Button } from "@/components/ui/button"
-import { FolderOpen, Link, PanelRightOpen, Check, X, Menu, Share2 } from "lucide-react"
+import { FolderOpen, PanelRightOpen, Check, X, Menu, Share2 } from "lucide-react"
 import { usePathname } from "next/navigation"
 import { toast } from "sonner"
 import {
@@ -18,6 +18,13 @@ import { useIsMobile } from "@/hooks/use-mobile"
 import { cn } from "@/lib/utils"
 import { useSidebar } from "@/components/ui/sidebar"
 import { ShareModal } from "@/components/sidebar/share-modal"
+import SidebarDialog from "../sidebar/sidebar-dialog";
+import ProfileDropDownMenu from "../headers/ProfileDropDownMenu";
+import MobileDropDownMenu from "../headers/MobileDropDownMenu";
+import DropDownMenu from "../headers/DropDownMenu";
+import HistoryIcon from "../assets/history";
+import NewChatIcon from "../assets/newChat";
+import Link from "next/link";
 
 interface ThreadSiteHeaderProps {
   threadId: string;
@@ -45,6 +52,7 @@ export function SiteHeader({
   const [editName, setEditName] = useState(projectName)
   const inputRef = useRef<HTMLInputElement>(null)
   const [showShareModal, setShowShareModal] = useState(false)
+  const [isSidePanelOpen, setIsSidePanelOpen] = useState(false)
 
   const isMobile = useIsMobile() || isMobileView
   const { setOpenMobile } = useSidebar()
@@ -113,10 +121,10 @@ export function SiteHeader({
   return (
     <>
       <header className={cn(
-        "bg-background sticky top-0 flex h-14 shrink-0 items-center gap-2 z-20 w-full",
+        "bg-background sticky top-0 flex h-14 shrink-0 items-center gap-1 z-20 w-full",
         isMobile && "px-2"
       )}>
-        {isMobile && (
+        {isMobile ? (
           <Button
             variant="ghost"
             size="icon"
@@ -124,11 +132,30 @@ export function SiteHeader({
             className="h-9 w-9 mr-1"
             aria-label="Open sidebar"
           >
-            <Menu className="h-4 w-4" />
+            {/* <Menu className="h-4 w-4" /> */}
+            <HistoryIcon />
           </Button>
-        )}
+        ) : (
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setIsSidePanelOpen(true)}
+            className="h-9 w-9 mr-1"
+            aria-label="Open sidebar"
+          >
+            {/* <Menu className="h-4 w-4" /> */}
+            <HistoryIcon />
+          </Button>
+        )
+        }
+        <Link href="/dashboard">
+          <NewChatIcon />
+        </Link>
+        <div className="flex-1 flex items-center justify-center">
+          <DropDownMenu />
+        </div>
 
-        <div className="flex flex-1 items-center gap-2 px-3">
+        {/* <div className="flex flex-1 items-center gap-2 px-3">
           {isEditing ? (
             <div className="flex items-center gap-1">
               <Input
@@ -168,7 +195,7 @@ export function SiteHeader({
               {projectName}
             </div>
           )}
-        </div>
+        </div> */}
 
         <div className="flex items-center gap-1 pr-4">
           {/* Debug mode indicator */}
@@ -179,20 +206,22 @@ export function SiteHeader({
           )}
 
           {isMobile ? (
-            // Mobile view - only show the side panel toggle
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={onToggleSidePanel}
-              className="h-9 w-9 cursor-pointer"
-              aria-label="Toggle computer panel"
-            >
-              <PanelRightOpen className="h-4 w-4" />
-            </Button>
+            <>
+              <MobileDropDownMenu endpoint="agents" />
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={onToggleSidePanel}
+                className="h-9 w-9 cursor-pointer"
+                aria-label="Toggle computer panel"
+              >
+                <PanelRightOpen className="h-4 w-4" />
+              </Button>
+            </>
           ) : (
             // Desktop view - show all buttons with tooltips
             <TooltipProvider>
-              <Tooltip>
+              {/* <Tooltip>
                 <TooltipTrigger asChild>
                   <Button
                     variant="ghost"
@@ -222,17 +251,17 @@ export function SiteHeader({
                 <TooltipContent>
                   <p>Share Chat</p>
                 </TooltipContent>
-              </Tooltip>
-
+              </Tooltip> */}
+              <ProfileDropDownMenu endpoint="agents" />
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Button
                     variant="ghost"
                     size="icon"
                     onClick={onToggleSidePanel}
-                    className="h-9 w-9 cursor-pointer"
+                    className="h-10 w-10 cursor-pointer"
                   >
-                    <PanelRightOpen className="h-4 w-4" />
+                    <PanelRightOpen className="h-9 w-9" />
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent>
@@ -249,6 +278,7 @@ export function SiteHeader({
         threadId={threadId}
         projectId={projectId}
       />
+      <SidebarDialog open={isSidePanelOpen} onOpenChange={setIsSidePanelOpen} />
     </>
   )
 } 

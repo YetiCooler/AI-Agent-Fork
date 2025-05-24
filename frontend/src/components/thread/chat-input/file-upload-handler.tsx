@@ -2,7 +2,7 @@
 
 import React, { forwardRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Paperclip, Loader2 } from 'lucide-react';
+import { File, Loader2, Plus, Trash, X } from 'lucide-react';
 import { toast } from 'sonner';
 import { createClient } from '@/lib/supabase/client';
 import {
@@ -12,6 +12,8 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 import { UploadedFile } from './chat-input';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { Divider } from '@mui/material';
 
 const API_URL = process.env.NEXT_PUBLIC_BACKEND_URL || '';
 
@@ -138,6 +140,8 @@ interface FileUploadHandlerProps {
   setPendingFiles: React.Dispatch<React.SetStateAction<File[]>>;
   setUploadedFiles: React.Dispatch<React.SetStateAction<UploadedFile[]>>;
   setIsUploading: React.Dispatch<React.SetStateAction<boolean>>;
+  uploadedFiles: UploadedFile[];
+  removeUploadedFile: (index: number) => void;
 }
 
 export const FileUploadHandler = forwardRef<
@@ -154,6 +158,8 @@ export const FileUploadHandler = forwardRef<
       setPendingFiles,
       setUploadedFiles,
       setIsUploading,
+      uploadedFiles,  
+      removeUploadedFile,
     },
     ref,
   ) => {
@@ -199,32 +205,77 @@ export const FileUploadHandler = forwardRef<
 
     return (
       <>
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button
-                type="button"
-                onClick={handleFileUpload}
-                variant="ghost"
-                size="default"
-                className="h-7 rounded-md text-muted-foreground"
-                disabled={
-                  loading || (disabled && !isAgentRunning) || isUploading
-                }
-              >
-                {isUploading ? (
-                  <Loader2 className="h-4 w-4 animate-spin" />
-                ) : (
-                  <Paperclip className="h-4 w-4" />
-                )}
-                <span className="text-sm">Attachments</span>
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent side="top">
-              <p>Attach files</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
+        {
+          uploadedFiles.length > 0 ?
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="default" className="h-7 rounded-md text-muted-foreground">
+                  <File className="h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-[300px]">
+                <div className="w-full flex justify-between items-center px-2">
+                  <div>Attached Files</div>
+                  <div className="flex gap-3">
+                    <button className="text-mainFont text-sm flex items-center gap-1 p-1 bg-transparent" onClick={handleFileUpload}>
+                      <Plus />
+                      Add
+                    </button>
+                    <button className="text-mainFont text-sm flex items-center gap-1 p-1 bg-transparent" onClick={() => setUploadedFiles([])}>
+                      <Trash />
+                      Clear
+                    </button>
+                  </div>
+                </div>
+                <Divider sx={{
+                  borderColor: "#25252799",
+                  borderWidth: "1px",
+                  borderStyle: "solid",
+                  width: "100%",
+                }} />
+                {uploadedFiles.map((file, index) => (
+                  // <DropdownMenuItem key={index}>
+                    <div className="flex justify-between items-center p-2" key={index}>
+                      <div className="flex items-center gap-2">
+                        <File />
+                        <div className="max-w-[150px] truncate">
+                          {file.name}
+                        </div>
+                      </div>
+                      <X className="cursor-pointer rounded-full p-[1px] hover:border hover:border-red-500 hover:bg-red-500 hover:text-white transition-all duration-150" onClick={() => removeUploadedFile(index)} />
+                    </div>
+                  // </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu > :
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    type="button"
+                    onClick={handleFileUpload}
+                    variant="ghost"
+                    size="default"
+                    className="h-7 rounded-md text-muted-foreground"
+                    disabled={
+                      loading || (disabled && !isAgentRunning) || isUploading
+                    }
+                  >
+                    {isUploading ? (
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                    ) : (
+                      <Plus className="h-4 w-4" />
+                    )}
+                    {/* <span className="text-sm">Attachments</span> */}
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent side="top">
+                  <p>Attach files</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+
+        }
 
         <input
           type="file"

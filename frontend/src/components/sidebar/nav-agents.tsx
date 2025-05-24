@@ -47,6 +47,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { ThreadWithProject } from '@/hooks/react-query/sidebar/use-sidebar';
 import { processThreadsWithProjects, useDeleteMultipleThreads, useDeleteThread, useProjects, useThreads } from '@/hooks/react-query/sidebar/use-sidebar';
 import { projectKeys, threadKeys } from '@/hooks/react-query/sidebar/keys';
+import NewChatIcon from "@/components/assets/newChat";
 
 export function NavAgents() {
   const { isMobile, state } = useSidebar()
@@ -420,7 +421,7 @@ export function NavAgents() {
                         href="/dashboard"
                         className="text-muted-foreground hover:text-foreground h-7 w-7 flex items-center justify-center rounded-md"
                       >
-                        <Plus className="h-4 w-4" />
+                        <NewChatIcon className="h-4 w-4" />
                         <span className="sr-only">New Agent</span>
                       </Link>
                     </div>
@@ -441,7 +442,7 @@ export function NavAgents() {
                 <div>
                   <SidebarMenuButton asChild>
                     <Link href="/dashboard" className="flex items-center">
-                      <Plus className="h-4 w-4" />
+                      <NewChatIcon className="h-4 w-4" />
                       <span>New Agent</span>
                     </Link>
                   </SidebarMenuButton>
@@ -547,7 +548,7 @@ export function NavAgents() {
                       </Link>
                     </SidebarMenuButton>
                   )}
-                  {state !== 'collapsed' && !isMultiSelectActive && (
+                  {!isMultiSelectActive && (
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
                         <SidebarMenuAction showOnHover>

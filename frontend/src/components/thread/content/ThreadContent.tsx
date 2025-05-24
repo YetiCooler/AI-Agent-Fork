@@ -373,8 +373,8 @@ export const ThreadContent: React.FC<ThreadContentProps> = ({
                                     } else if (group.type === 'assistant_group') {
                                         return (
                                             <div key={group.key} ref={groupIndex === groupedMessages.length - 1 ? latestMessageRef : null}>
-                                                <div className="flex items-start gap-3">
-                                                    <div className="flex-shrink-0 w-5 h-5 mt-2 rounded-md flex items-center justify-center ml-auto mr-2">
+                                                <div className="flex flex-col items-start gap-3">
+                                                    <div className="flex-shrink-0 w-5 h-5 mt-2 rounded-md flex items-center justify-center ml-4">
                                                     <RyxenLogo />
                                                     </div>
                                                     <div className="flex-1">
@@ -596,7 +596,7 @@ export const ThreadContent: React.FC<ThreadContentProps> = ({
                                 !readOnly &&
                                 (messages.length === 0 || messages[messages.length - 1].type === 'user') && (
                                     <div ref={latestMessageRef}>
-                                        <div className="flex items-start gap-3">
+                                        <div className="flex flex-col items-start gap-3">
                                             <div className="flex-shrink-0 w-5 h-5 rounded-md flex items-center justify-center bg-primary/10">
                                             <RyxenLogo />
                                             </div>
@@ -616,7 +616,7 @@ export const ThreadContent: React.FC<ThreadContentProps> = ({
                             {/* For playback mode - Show tool call animation if active */}
                             {readOnly && currentToolCall && (
                                 <div ref={latestMessageRef}>
-                                    <div className="flex items-start gap-3">
+                                    <div className="flex flex-col items-start gap-3">
                                         <div className="flex-shrink-0 w-5 h-5 mt-2 rounded-md flex items-center justify-center bg-primary/10">
                                             <RyxenLogo />
                                         </div>
@@ -635,7 +635,7 @@ export const ThreadContent: React.FC<ThreadContentProps> = ({
                             {/* For playback mode - Show streaming indicator if no messages yet */}
                             {readOnly && visibleMessages && visibleMessages.length === 0 && isStreamingText && (
                                 <div ref={latestMessageRef}>
-                                    <div className="flex items-start gap-3">
+                                    <div className="flex flex-col items-start gap-3">
                                         <div className="flex-shrink-0 w-5 h-5 mt-2 rounded-md flex items-center justify-center bg-primary/10">
                                         <RyxenLogo />
                                         </div>

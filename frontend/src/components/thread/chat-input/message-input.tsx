@@ -34,6 +34,7 @@ interface MessageInputProps {
   modelOptions: any[];
   subscriptionStatus: SubscriptionStatus;
   canAccessModel: (model: string) => boolean;
+  removeUploadedFile: (index: number) => void;
 }
 
 export const MessageInput = forwardRef<HTMLTextAreaElement, MessageInputProps>(
@@ -63,6 +64,7 @@ export const MessageInput = forwardRef<HTMLTextAreaElement, MessageInputProps>(
       modelOptions,
       subscriptionStatus,
       canAccessModel,
+      removeUploadedFile,
     },
     ref,
   ) => {
@@ -132,10 +134,11 @@ export const MessageInput = forwardRef<HTMLTextAreaElement, MessageInputProps>(
                 setPendingFiles={setPendingFiles}
                 setUploadedFiles={setUploadedFiles}
                 setIsUploading={setIsUploading}
+                uploadedFiles={uploadedFiles}
+                removeUploadedFile={removeUploadedFile}
               />
             )}
 
-            
           </div>
           <div className='flex items-center gap-2'>
             <ModelSelector

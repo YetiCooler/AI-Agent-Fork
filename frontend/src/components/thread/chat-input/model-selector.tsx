@@ -9,6 +9,14 @@ import {
   DropdownMenuSeparator,
 } from '@/components/ui/dropdown-menu';
 import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogClose
+} from '@/components/ui/dialog';
+import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
@@ -22,6 +30,11 @@ import { PaywallDialog } from '@/components/payment/paywall-dialog';
 import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
+import ClaudeModelIcon from '@/components/assets/models/ClaudeModelIcon';
+import OpenaiModelIcon from '@/components/assets/models/OpenaiModelIcon';
+import QwenModelIcon from '@/components/assets/models/QwenModelIcon';
+import DeepseekModelIcon from '@/components/assets/models/DeepseekModelIcon';
 
 const LOW_QUALITY_MODELS = ['deepseek', 'grok-3-mini', 'qwen3'];
 
@@ -165,16 +178,36 @@ export const ModelSelector: React.FC<ModelSelectorProps> = ({
         <Tooltip>
           <TooltipTrigger asChild>
             <div className='w-full'>
-              <DropdownMenuItem
+              <div
                 className={cn(
-                  "text-sm px-3 py-1 flex items-center justify-between cursor-pointer",
-                  isHighlighted && "bg-accent",
+                  "text-[14px] p-2 flex items-center justify-between cursor-pointer border rounded-md border-transparent",
+                  isHighlighted && "bg-[#FFFFFF05] border-[#2C2B30]",
                   !accessible && "opacity-70"
                 )}
                 onClick={() => handleSelect(opt.id)}
                 onMouseEnter={() => setHighlightedIndex(filteredOptions.indexOf(opt))}
               >
-                <div className="flex items-center">
+                <div className="flex items-center gap-2">
+                  {
+                    opt.id === 'sonnet-3.7' && (
+                      <ClaudeModelIcon />
+                    )
+                  }
+                  {
+                    opt.id === 'gpt-4o' && (
+                      <OpenaiModelIcon />
+                    )
+                  }
+                  {
+                    opt.id === 'deepseek' && (
+                      <DeepseekModelIcon />
+                    )
+                  }
+                  {
+                    opt.id === 'qwen3' && (
+                      <QwenModelIcon />
+                    )
+                  }
                   <span className="font-medium">{opt.label}</span>
                   {isLowQuality && (
                     <AlertTriangle className="h-3.5 w-3.5 text-amber-500 ml-1.5" />
@@ -187,11 +220,11 @@ export const ModelSelector: React.FC<ModelSelectorProps> = ({
                   {selectedModel === opt.id && (
                     <Check className="mr-2 h-4 w-4 text-blue-500" />
                   )}
-                  {opt.top && (
+                  {/* {opt.top && (
                     <Badge className="bg-purple-500/20 text-purple-500 rounded-full">TOP</Badge>
-                  )}
+                  )} */}
                 </div>
-              </DropdownMenuItem>
+              </div>
             </div>
           </TooltipTrigger>
           {!accessible ? (
@@ -210,8 +243,8 @@ export const ModelSelector: React.FC<ModelSelectorProps> = ({
 
   return (
     <div className="relative">
-      <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
-        <DropdownMenuTrigger asChild>
+      <Dialog open={isOpen} onOpenChange={setIsOpen}>
+        <DialogTrigger asChild>
           <Button
             variant="ghost"
             size="default"
@@ -234,13 +267,14 @@ export const ModelSelector: React.FC<ModelSelectorProps> = ({
               <ChevronDown className="h-3 w-3 opacity-50 ml-1" />
             </div>
           </Button>
-        </DropdownMenuTrigger>
+        </DialogTrigger>
 
-        <DropdownMenuContent 
-          align="end" 
-          className="w-64 p-0 overflow-hidden"
-          sideOffset={4}
+        <DialogContent 
+          className="w-64 overflow-hidden p-2"
         >
+          <DialogHeader className='hidden'>
+            <DialogTitle>Select Model</DialogTitle>
+          </DialogHeader>
           {/* <div className="px-3 py-2.5 border-b border-border">
             <div className="flex items-center justify-between">
               <div className="flex flex-col">
@@ -322,10 +356,10 @@ export const ModelSelector: React.FC<ModelSelectorProps> = ({
               </div>
             </>
           )}
-        </DropdownMenuContent>
-      </DropdownMenu>
+        </DialogContent>
+      </Dialog>
 
-      {paywallOpen && (
+      {/* {paywallOpen && (
         <PaywallDialog
           open={true}
           onDialogClose={closeDialog}
@@ -340,7 +374,7 @@ export const ModelSelector: React.FC<ModelSelectorProps> = ({
           ctaText="Subscribe Now"
           cancelText="Maybe Later"
         />
-      )}
+      )} */}
     </div>
   );
 };

@@ -21,6 +21,7 @@ import { IFileWithUrl } from "@/lib/interface";
 import { generateSessionId } from "@/lib/utils";
 import DialogModelMenu from "../Chat/DialogModelMenu";
 import { useUser } from "@/contexts/UserContext";
+import DropDownMenu from "./DropDownMenu";
 
 const Header = () => {
   const router = useRouter();
@@ -73,7 +74,7 @@ const Header = () => {
           </div>
         } */}
         <div className="flex h-[72px] items-center max-sm:px-3 max-sm:pt-[11px] pr-2 md:pr-6 justify-between relative">
-          <div className={`items-center pl-4 h-full hidden sm:flex`}>
+          <div className={`items-center pl-4 gap-2 h-full hidden sm:flex`}>
             <div className={`mr-2`}>
               <Image
                 src="/logo-chat.png"
@@ -86,13 +87,14 @@ const Header = () => {
                 }}
               />
             </div>
+            <DropDownMenu />
             <DialogModelMenu />
           </div>
           {
             endPoint[1] !== "admin" &&
             <div className="flex items-center gap-2 sm:hidden">
               {
-                <>
+                <div className="flex items-center gap-2">
                   <ShadowBtn
                     mainClassName="border-[#2C2B30] border bg-[#292929] shadow-btn-google text-white p-2 flex items-center justify-center gap-2"
                     onClick={() => {
@@ -117,20 +119,21 @@ const Header = () => {
                   >
                     <NewChatIcon />
                   </ShadowBtn>
-                </>
+                </div>
               }
               {
                 (endPoint[1] === "workers" || endPoint[1] === "subscription") &&
-                <>
+                <div>
                   <ShadowBtn
                     mainClassName="border-[#2C2B30] border bg-[#292929] shadow-btn-google text-white p-2 flex items-center justify-center gap-2"
                   >
                     <ProfileIcon />
                   </ShadowBtn>
-                </>
+                </div>
               }
             </div>
           }
+          <div className="sm:hidden"><DropDownMenu /></div>
           {
             endPoint[1] !== "admin" ? (
               <>
@@ -176,7 +179,7 @@ const Header = () => {
                             setFiles([]);
                             setIsSidebarVisible(false);
                             setChatLog([]);
-                            router.push(`/${endPoint[1] == "roboChat" ? "roboChat" : endPoint[1] == "router" ? "router" : "chatText"}`);
+                            router.push(`/edith`);
                           }}
                         >
                           <NewChatIcon />
