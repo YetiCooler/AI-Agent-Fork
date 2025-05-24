@@ -38,7 +38,7 @@ import MobileDropDownMenu from '@/components/headers/MobileDropDownMenu';
 import HistoryIcon from '@/components/assets/history';
 import NewChatIcon from '@/components/assets/newChat';
 import Link from 'next/link';
-
+import Image from 'next/image';
 // Constant for localStorage key to ensure consistency
 const PENDING_PROMPT_KEY = 'pendingAgentPrompt';
 
@@ -192,7 +192,19 @@ function DashboardContent() {
               <TooltipContent>New Agent</TooltipContent>
             </Tooltip>
           </div>
-          <div className='absolute top-8 left-1/2 -translate-x-1/2 transform z-10'>
+          <div className='absolute top-6 left-1/2 -translate-x-1/2 transform z-10 flex items-center gap-1'>
+            <div className={`mr-2`}>
+              <Image
+                src="/logo-chat.png"
+                alt="logo"
+                width={100}
+                height={100}
+                className="h-5 w-auto"
+                onClick={() => {
+                  router.push("/");
+                }}
+              />
+            </div>
             <DropDownMenu />
           </div>
           <div className='absolute top-4 right-4 z-10'>
@@ -202,6 +214,21 @@ function DashboardContent() {
       ) : (
         <>
           <div className="absolute top-4 left-4 z-10 flex items-center gap-1">
+            <div className={`mr-2`}>
+              <Image
+                src="/logo-chat.png"
+                alt="logo"
+                width={100}
+                height={100}
+                className="h-5 w-auto"
+                onClick={() => {
+                  router.push("/");
+                }}
+              />
+            </div>
+            <DropDownMenu />
+          </div>
+          {/* <div className='absolute top-4 left-1/2 -translate-x-1/2 transform z-10 flex items-center gap-1'>
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button
@@ -225,11 +252,31 @@ function DashboardContent() {
               </TooltipTrigger>
               <TooltipContent>New Agent</TooltipContent>
             </Tooltip>
-          </div>
-          <div className='absolute top-8 left-1/2 -translate-x-1/2 transform z-10'>
-            <DropDownMenu />
-          </div>
-          <div className='absolute top-4 right-4 z-10'>
+          </div> */}
+          <div className='absolute top-4 right-4 z-10 flex items-center gap-1'>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-8 w-8"
+                  onClick={() => setOpen(true)}
+                >
+                  <HistoryIcon className="h-4 w-4" />
+                  <span className="sr-only">Open menu</span>
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>History</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Link href="/dashboard" className="mr-2 hover:bg-accent rounded-md w-9 h-9 flex items-center justify-center">
+                  <NewChatIcon className="h-4 w-4" />
+                  <span className="sr-only">New Agent</span>
+                </Link>
+              </TooltipTrigger>
+              <TooltipContent>New Agent</TooltipContent>
+            </Tooltip>
             <ProfileDropDownMenu endpoint="dashboard" />
           </div>
         </>

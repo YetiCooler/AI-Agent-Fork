@@ -25,6 +25,8 @@ import DropDownMenu from "../headers/DropDownMenu";
 import HistoryIcon from "../assets/history";
 import NewChatIcon from "../assets/newChat";
 import Link from "next/link";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 interface ThreadSiteHeaderProps {
   threadId: string;
@@ -53,6 +55,7 @@ export function SiteHeader({
   const inputRef = useRef<HTMLInputElement>(null)
   const [showShareModal, setShowShareModal] = useState(false)
   const [isSidePanelOpen, setIsSidePanelOpen] = useState(false)
+  const router = useRouter()
 
   const isMobile = useIsMobile() || isMobileView
   const { setOpenMobile } = useSidebar()
@@ -124,34 +127,36 @@ export function SiteHeader({
         "bg-background sticky top-0 flex h-14 shrink-0 items-center gap-1 z-20 w-full",
         isMobile && "px-2"
       )}>
-        {isMobile ? (
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => setOpenMobile(true)}
-            className="h-9 w-9 mr-1"
-            aria-label="Open sidebar"
-          >
-            {/* <Menu className="h-4 w-4" /> */}
-            <HistoryIcon />
-          </Button>
-        ) : (
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => setIsSidePanelOpen(true)}
-            className="h-9 w-9 mr-1"
-            aria-label="Open sidebar"
-          >
-            {/* <Menu className="h-4 w-4" /> */}
-            <HistoryIcon />
-          </Button>
-        )
-        }
-        <Link href="/dashboard">
-          <NewChatIcon />
-        </Link>
-        <div className="flex-1 flex items-center justify-center">
+        {isMobile && (
+          <>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setOpenMobile(true)}
+              className="h-9 w-9 mr-1"
+              aria-label="Open sidebar"
+            >
+              {/* <Menu className="h-4 w-4" /> */}
+              <HistoryIcon />
+            </Button>
+            <Link href="/dashboard">
+              <NewChatIcon />
+            </Link>
+          </>
+        )}
+        <div className={`flex-1 flex items-center ${isMobile ? 'justify-center' : 'justify-start ml-2'}`}>
+          <div className={`mr-2`}>
+            <Image
+              src="/logo-chat.png"
+              alt="logo"
+              width={100}
+              height={100}
+              className="h-5 w-auto"
+              onClick={() => {
+                router.push("/");
+              }}
+            />
+          </div>
           <DropDownMenu />
         </div>
 
@@ -252,6 +257,23 @@ export function SiteHeader({
                   <p>Share Chat</p>
                 </TooltipContent>
               </Tooltip> */}
+              {!isMobile && (
+                <>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => setIsSidePanelOpen(true)}
+                    className="h-9 w-9"
+                    aria-label="Open sidebar"
+                  >
+                    {/* <Menu className="h-4 w-4" /> */}
+                    <HistoryIcon />
+                  </Button>
+                  <Link href="/dashboard" className="mr-2 hover:bg-accent rounded-md w-9 h-9 flex items-center justify-center">
+                    <NewChatIcon />
+                  </Link>
+                </>
+              )}
               <ProfileDropDownMenu endpoint="agents" />
               <Tooltip>
                 <TooltipTrigger asChild>
