@@ -14,13 +14,13 @@ export function RyxenLogo() {
   }, []);
 
   return (
-    <div className="flex h-6 w-6 items-center justify-center flex-shrink-0">
+    <div className="flex items-center justify-center flex-shrink-0">
       <Image
-        src="/logo-chat.png"
+        src="/logo-ryxen.svg"
         alt="Ryxen"
-        width={24}
-        height={24}
-        // className={`${mounted && theme === 'dark' ? 'invert' : ''}`}
+        width={100}
+        height={100}
+        className={`h-5`}
       />
     </div>
   );

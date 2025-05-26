@@ -108,12 +108,12 @@ export function Navbar() {
   const toggleDrawer = () => setIsDrawerOpen((prev) => !prev);
   const handleOverlayClick = () => setIsDrawerOpen(false);
 
-  const logoSrc = '/logo-chat.png'
+  const logoSrc = '/logo-ryxen.svg'
 
   return (
     <header
       className={cn(
-        'fixed w-screen z-50 flex justify-center transition-all duration-300 mx-0',
+        'fixed w-screen z-50 flex justify-center transition-all duration-300 mx-0 h-[72px]',
         // hasScrolled ? 'top-6' : 
         'top-0',
       )}
@@ -132,8 +132,9 @@ export function Navbar() {
             <Image
               src={logoSrc}
               alt="Ryxen AI Logo"
-              width={22}
-              height={22}
+              width={100}
+              height={100}
+              className='h-5 w-auto'
               priority
             />
             Ryxen

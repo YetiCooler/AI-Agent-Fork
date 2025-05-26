@@ -129,7 +129,7 @@ export default function GoogleSignIn({ returnUrl }: GoogleSignInProps) {
   return (
     <>
       <GoogleLogin
-        shape="pill"
+        shape="rectangular"
         size="large"
         theme={resolvedTheme === 'dark' ? 'filled_black' : 'filled_blue'}
         width={isMobile ? 246 : 380}

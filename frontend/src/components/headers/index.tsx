@@ -77,7 +77,7 @@ const Header = () => {
           <div className={`items-center pl-4 gap-2 h-full hidden sm:flex`}>
             <div className={`mr-2`}>
               <Image
-                src="/logo-chat.png"
+                src="/logo-ryxen.svg"
                 alt="logo"
                 width={100}
                 height={100}

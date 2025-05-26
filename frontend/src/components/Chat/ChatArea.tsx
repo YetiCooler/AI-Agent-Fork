@@ -39,11 +39,11 @@ const ChatArea = () => {
             <div className="flex items-center gap-2">
               <div className={`w-10 h-10 rounded-lg border border-gray-500 bg-[#181818] relative`}>
                 <Image
-                  src="/logo-chat.png"
+                  src="/logo-ryxen.svg"
                   alt="chat loading"
-                  width={64}
-                  height={64}
-                  className={`w-6 h-6 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2`}
+                  width={100}
+                  height={100}
+                  className={`h-5 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2`}
                 />
               </div>
               {

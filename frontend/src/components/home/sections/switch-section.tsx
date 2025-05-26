@@ -17,7 +17,7 @@ const SwitchSection = () => {
                             onClick={() => router.push('/edith')}
                         >
                             <div className="flex items-center gap-2">
-                                <Image src="/logo-chat.png" alt="edith-logo" className="h-[22px] w-auto" width={100} height={22} />
+                                <Image src="/logo-ryxen.svg" alt="edith-logo" className="h-[22px] w-auto" width={100} height={22} />
                                 <span className="text-[16px] text-nowrap">EDITH</span>
                             </div>
                         </button>
@@ -26,7 +26,7 @@ const SwitchSection = () => {
                             onClick={() => router.push('/dashboard')}
                         >
                             <div className="flex items-center gap-2">
-                                <Image src="/logo-chat.png" alt="edith-logo" className="h-[22px] w-auto" width={100} height={22} />
+                                <Image src="/logo-ryxen.svg" alt="edith-logo" className="h-[22px] w-auto" width={100} height={22} />
                                 <span className="text-[16px] text-nowrap">ULTRON</span>
                             </div>
                         </button>

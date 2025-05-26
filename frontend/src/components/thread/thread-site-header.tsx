@@ -147,7 +147,7 @@ export function SiteHeader({
         <div className={`flex-1 flex items-center ${isMobile ? 'justify-center' : 'justify-start ml-2'}`}>
           <div className={`mr-2`}>
             <Image
-              src="/logo-chat.png"
+              src="/logo-ryxen.svg"
               alt="logo"
               width={100}
               height={100}

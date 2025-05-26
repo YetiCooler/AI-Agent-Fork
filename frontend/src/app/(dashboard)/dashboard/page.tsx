@@ -195,7 +195,7 @@ function DashboardContent() {
           <div className='absolute top-6 left-1/2 -translate-x-1/2 transform z-10 flex items-center gap-1'>
             <div className={`mr-2`}>
               <Image
-                src="/logo-chat.png"
+                src="/logo-ryxen.svg"
                 alt="logo"
                 width={100}
                 height={100}
@@ -216,7 +216,7 @@ function DashboardContent() {
           <div className="absolute top-4 left-4 z-10 flex items-center gap-1">
             <div className={`mr-2`}>
               <Image
-                src="/logo-chat.png"
+                src="/logo-ryxen.svg"
                 alt="logo"
                 width={100}
                 height={100}
@@ -287,7 +287,13 @@ function DashboardContent() {
           {/* <h1 className={cn('tracking-tight text-4xl font-semibold leading-tight')}>
             Hey
           </h1> */}
-          <Image src="/logo-chat.png" alt="logo" width={64} height={64} />
+          <Image
+            src="/logo-ryxen.svg"
+            alt="logo"
+            width={300}
+            height={300}
+            className="h-[60px] sm:h-[64px] w-auto"
+          />
           <p className="tracking-tight text-[18px] font-normal text-white mt-6 flex items-center gap-2">
             What would you like Ultron to do today?
           </p>

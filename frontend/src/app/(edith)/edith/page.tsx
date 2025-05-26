@@ -20,7 +20,7 @@ const ChatText = () => {
               <div className="flex flex-col items-center justify-center max-sm:flex-auto">
                 <div className="flex items-end justify-center border-none outline-none focus:outline-none">
                   <Image
-                    src="/logo-chat.png"
+                    src="/logo-ryxen.svg"
                     alt="logo"
                     width={300}
                     height={300}
