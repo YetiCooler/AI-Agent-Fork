@@ -379,7 +379,7 @@ const ChatHistory = () => {
                                                             setSessionId(session.id);
                                                             setIsSidebarVisible(false);
                                                             setFiles([]);
-                                                            router.push("/chatText");   
+                                                            router.push("/edith");   
                                                         }
                                                     }}
                                                     className={
