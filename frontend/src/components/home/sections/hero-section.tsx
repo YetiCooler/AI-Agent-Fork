@@ -288,19 +288,19 @@ export function HeroSection() {
             <form className="w-full relative" onSubmit={handleSubmit}>
               {/* ChatGPT-like input with glow effect */}
               <div className="relative z-10">
-                <div className="flex items-center rounded-lg border border-border bg-background/80 backdrop-blur px-5 py-1 shadow-lg transition-all duration-200 hover:border-secondary/50 focus-within:border-secondary/50 focus-within:shadow-[0_0_15px_rgba(var(--secondary),0.3)]">
+                <div className="flex items-center rounded-lg border border-border bg-sidebar backdrop-blur px-4 py-2 shadow-lg transition-all duration-200 hover:border-secondary/50 focus-within:border-secondary/50 focus-within:shadow-[0_0_15px_rgba(var(--secondary),0.3)]">
                   <input
                     type="text"
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                     onKeyDown={handleKeyDown}
                     placeholder={hero.inputPlaceholder}
-                    className="flex-1 h-12 md:h-14 rounded-full bg-transparent focus:outline-none text-sm md:text-base"
+                    className="flex-1 h-12 md:h-14 rounded-full bg-transparent focus:outline-none text-[14px]"
                     disabled={isSubmitting}
                   />
                   <button
                     type="submit"
-                    className={`cursor-pointer rounded-full p-2 md:p-3 transition-all duration-200 shadow-[inset_0_1px_2px_rgba(255,255,255,0.25),0_3px_3px_-1.5px_rgba(16,24,40,0.06),0_1px_1px_rgba(16,24,40,0.08)] ${inputValue.trim()
+                    className={`cursor-pointer rounded-md w-9 h-9 flex items-center justify-center transition-all duration-200 shadow-[inset_0_1px_2px_rgba(255,255,255,0.25),0_3px_3px_-1.5px_rgba(16,24,40,0.06),0_1px_1px_rgba(16,24,40,0.08)] ${inputValue.trim()
                       ? 'bg-gradient-to-b from-[#DFDFDF] to-[#BFBFBF] text-[#0E0E10]'
                       : 'bg-gradient-to-b from-[#DFDFDF9c] to-[#BFBFBF9c] text-[#0E0E109c]'
                       }`}

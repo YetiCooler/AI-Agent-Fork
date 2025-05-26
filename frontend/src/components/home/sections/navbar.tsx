@@ -115,7 +115,7 @@ export function Navbar() {
       className={cn(
         'fixed w-screen z-50 mx-4 flex justify-center transition-all duration-300 md:mx-0',
         // hasScrolled ? 'top-6' : 
-        'top-4 mx-0',
+        'top-0 mx-0',
       )}
     >
       <div
