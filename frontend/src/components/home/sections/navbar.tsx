@@ -113,9 +113,9 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        'fixed w-screen z-50 mx-4 flex justify-center transition-all duration-300 md:mx-0',
+        'fixed w-screen z-50 flex justify-center transition-all duration-300 mx-0',
         // hasScrolled ? 'top-6' : 
-        'top-0 mx-0',
+        'top-0',
       )}
     >
       <div
@@ -128,7 +128,7 @@ export function Navbar() {
         )}
       >
         <div className="flex h-[56px] items-center justify-between p-4 w-full">
-          <Link href="/" className="flex items-center gap-3">
+          <Link href="/" className="flex items-center gap-2 text-lg font-medium">
             <Image
               src={logoSrc}
               alt="Ryxen AI Logo"
@@ -136,38 +136,28 @@ export function Navbar() {
               height={22}
               priority
             />
+            Ryxen
           </Link>
 
           {/* <NavMenu /> */}
 
           <div className="flex flex-row items-center gap-1 md:gap-3 shrink-0">
-            <div className="flex items-center space-x-3">
-              {/* <Link
-                  href="https://github.com/ryxen-ai/ryxen"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hidden md:flex items-center justify-center h-8 px-3 text-sm font-normal tracking-wide rounded-full text-primary hover:text-primary/80 transition-colors"
-                  aria-label="GitHub"
+            {
+              !user ?
+                <Link
+                  className="bg-secondary h-10 flex items-center justify-center text-base font-normal tracking-wide rounded-md text-primary-foreground dark:text-secondary-foreground w-fit px-4 shadow-[inset_0_1px_2px_rgba(255,255,255,0.25),0_3px_3px_-1.5px_rgba(16,24,40,0.06),0_1px_1px_rgba(16,24,40,0.08)] border border-white/[0.12]"
+                  href="/auth"
                 >
-                  <Github className="size-[18px]" />
-                </Link> */}
-              {
-                !user ?
-                  <Link
-                    className="bg-secondary h-8 hidden md:flex items-center justify-center text-sm font-normal tracking-wide rounded-full text-primary-foreground dark:text-secondary-foreground w-fit px-4 shadow-[inset_0_1px_2px_rgba(255,255,255,0.25),0_3px_3px_-1.5px_rgba(16,24,40,0.06),0_1px_1px_rgba(16,24,40,0.08)] border border-white/[0.12]"
-                    href="/auth"
-                  >
-                    Signup
-                  </Link> :
-                  <button
-                    className="bg-secondary h-8 hidden md:flex items-center justify-center text-sm font-normal tracking-wide rounded-full text-primary-foreground dark:text-secondary-foreground w-fit px-4 shadow-[inset_0_1px_2px_rgba(255,255,255,0.25),0_3px_3px_-1.5px_rgba(16,24,40,0.06),0_1px_1px_rgba(16,24,40,0.08)] border border-white/[0.12] cursor-pointer"
-                    onClick={() => signOut()}
-                  >
-                    Signout
-                  </button>
-              }
-            </div>
-            {/* <ThemeToggle /> */}
+                  Signup
+                </Link> :
+                <button
+                  className="bg-secondary h-10 flex items-center justify-center text-base font-normal tracking-wide rounded-md text-primary-foreground dark:text-secondary-foreground w-fit px-4 shadow-[inset_0_1px_2px_rgba(255,255,255,0.25),0_3px_3px_-1.5px_rgba(16,24,40,0.06),0_1px_1px_rgba(16,24,40,0.08)] border border-white/[0.12] cursor-pointer"
+                  onClick={() => signOut()}
+                >
+                  Signout
+                </button>
+            }
+            {/* <ThemeToggle />
             <button
               className="md:hidden border border-border size-8 rounded-md cursor-pointer flex items-center justify-center"
               onClick={toggleDrawer}
@@ -177,7 +167,7 @@ export function Navbar() {
               ) : (
                 <Menu className="size-5" />
               )}
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

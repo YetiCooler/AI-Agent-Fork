@@ -357,7 +357,7 @@ function LoginContent() {
             <div className="relative z-10 pt-24 pb-8 max-w-md mx-auto h-full w-full flex flex-col gap-2 items-center justify-center">
               <Link
                 href="/"
-                className="group border border-border/50 bg-background hover:bg-accent/20 rounded-full text-sm h-8 px-3 flex items-center gap-2 transition-all duration-200 shadow-sm mb-6"
+                className="group border border-border/50 bg-background hover:bg-accent/20 rounded-md text-sm h-8 px-3 flex items-center gap-2 transition-all duration-200 shadow-sm mb-6"
               >
                 <ArrowLeft className="h-4 w-4 text-muted-foreground" />
                 <span className="font-medium text-muted-foreground text-xs tracking-wide">
@@ -412,7 +412,7 @@ function LoginContent() {
                     name="email"
                     type="email"
                     placeholder="Email address"
-                    className="h-12 rounded-full bg-background border-border"
+                    className="h-11 rounded-md bg-background border-border"
                     required
                   />
                 </div>
@@ -423,7 +423,7 @@ function LoginContent() {
                     name="password"
                     type="password"
                     placeholder="Password"
-                    className="h-12 rounded-full bg-background border-border"
+                    className="h-11 rounded-md bg-background border-border"
                     required
                   />
                 </div>
@@ -435,7 +435,7 @@ function LoginContent() {
                       name="confirmPassword"
                       type="password"
                       placeholder="Confirm password"
-                      className="h-12 rounded-full bg-background border-border"
+                      className="h-11 rounded-md bg-background border-border"
                       required
                     />
                   </div>
@@ -446,7 +446,7 @@ function LoginContent() {
                     <>
                       <SubmitButton
                         formAction={handleSignIn}
-                        className="w-full h-12 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all shadow-md"
+                        className="w-full h-11 rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition-all shadow-md"
                         pendingText="Signing in..."
                       >
                         Sign in
@@ -454,7 +454,7 @@ function LoginContent() {
 
                       <Link
                         href={`/auth?mode=signup${returnUrl ? `&returnUrl=${returnUrl}` : ''}`}
-                        className="flex h-12 items-center justify-center w-full text-center rounded-full border border-border bg-background hover:bg-accent/20 transition-all"
+                        className="flex h-11 items-center justify-center w-full text-center rounded-md border border-border bg-background hover:bg-accent/20 transition-all"
                       >
                         Create new account
                       </Link>
@@ -463,7 +463,7 @@ function LoginContent() {
                     <>
                       <SubmitButton
                         formAction={handleSignUp}
-                        className="w-full h-12 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all shadow-md"
+                        className="w-full h-11 rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition-all shadow-md"
                         pendingText="Creating account..."
                       >
                         Sign up
@@ -471,7 +471,7 @@ function LoginContent() {
 
                       <Link
                         href={`/auth${returnUrl ? `?returnUrl=${returnUrl}` : ''}`}
-                        className="flex h-12 items-center justify-center w-full text-center rounded-full border border-border bg-background hover:bg-accent/20 transition-all"
+                        className="flex h-11 items-center justify-center w-full text-center rounded-md border border-border bg-background hover:bg-accent/20 transition-all"
                       >
                         Back to sign in
                       </Link>

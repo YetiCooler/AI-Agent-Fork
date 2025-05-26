@@ -139,7 +139,7 @@ export default function GoogleSignIn({ returnUrl }: GoogleSignInProps) {
     return (
       <button
         disabled
-        className="w-full h-12 flex items-center justify-center gap-2 text-sm font-medium tracking-wide rounded-full bg-background border border-border opacity-60 cursor-not-allowed"
+        className="w-full h-11 flex items-center justify-center gap-2 text-sm font-medium tracking-wide rounded-md bg-background border border-border opacity-60 cursor-not-allowed"
       >
         <svg className="w-5 h-5" viewBox="0 0 24 24">
           <path
@@ -194,7 +194,7 @@ export default function GoogleSignIn({ returnUrl }: GoogleSignInProps) {
             if (buttonContainer) {
               window.google.accounts.id.renderButton(buttonContainer, {
                 type: 'standard',
-                theme: resolvedTheme === 'dark' ? 'filled_black' : 'outline',
+                theme: 'filled_black',
                 size: 'large',
                 text: 'continue_with',
                 shape: 'pill',
@@ -207,9 +207,9 @@ export default function GoogleSignIn({ returnUrl }: GoogleSignInProps) {
                 const googleButton =
                   buttonContainer.querySelector('div[role="button"]');
                 if (googleButton instanceof HTMLElement) {
-                  googleButton.style.borderRadius = '9999px';
+                  googleButton.style.borderRadius = '6px';
                   googleButton.style.width = '100%';
-                  googleButton.style.height = '56px';
+                  googleButton.style.height = '44px';
                   googleButton.style.border = '1px solid var(--border)';
                   googleButton.style.backgroundColor = '#111112';
                   googleButton.style.transition = 'all 0.2s';
