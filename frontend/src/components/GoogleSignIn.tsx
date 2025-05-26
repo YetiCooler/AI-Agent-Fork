@@ -127,11 +127,11 @@ export default function GoogleSignIn({ returnUrl }: GoogleSignInProps) {
   }
 
   return (
-    <>
+    <div style={{ colorScheme: "light"}}>
       <GoogleLogin
         shape="rectangular"
         size="large"
-        theme={resolvedTheme === 'dark' ? 'filled_black' : 'filled_blue'}
+        theme={"filled_black"}
         width={isMobile ? 246 : 380}
         onSuccess={async (response) => {
           // Decode the JWT token to get user info
@@ -176,6 +176,6 @@ export default function GoogleSignIn({ returnUrl }: GoogleSignInProps) {
         }}
         useOneTap // Optional: enables Google One Tap
       />
-    </>
+    </div>
   );
 }
