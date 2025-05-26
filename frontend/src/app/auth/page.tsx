@@ -263,7 +263,11 @@ function LoginContent() {
                     Check your email
                   </h1>
 
-                  <p className="text-base md:text-lg text-center text-muted-foreground font-medium text-balance leading-relaxed tracking-tight max-w-md mb-2">
+                  <p 
+                  className={`text-base md:text-lg text-center text-muted-foreground font-medium text-balance leading-relaxed tracking-tight mb-2
+                    ${isMobile ? 'max-w-[246px]' : 'max-w-md'}
+                  `}
+                  >
                     We've sent a confirmation link to:
                   </p>
 
@@ -271,7 +275,10 @@ function LoginContent() {
                     {registrationEmail || 'your email address'}
                   </p>
 
-                  <div className="bg-green-50 dark:bg-green-950/20 border border-green-100 dark:border-green-900/50 rounded-lg p-6 mb-8 max-w-md w-full">
+                  <div className={`bg-green-50 dark:bg-green-950/20 border border-green-100 dark:border-green-900/50 rounded-lg p-6 mb-8 w-full
+                    ${isMobile ? 'max-w-[246px]' : 'max-w-md'}
+                  `}
+                  >
                     <p className="text-sm text-green-800 dark:text-green-400 leading-relaxed">
                       Click the link in the email to activate your account. If
                       you don't see the email, check your spam folder.
@@ -358,7 +365,7 @@ function LoginContent() {
 
             {/* Header content */}
             <div className={`relative z-10 pt-24 pb-8 mx-auto h-full w-full flex flex-col gap-2 items-center justify-center
-              ${isMobile ? 'max-w-[312px]' : 'max-w-md'}
+              ${isMobile ? 'max-w-[246px]' : 'max-w-md'}
               `}
             >
               <Link
@@ -384,7 +391,10 @@ function LoginContent() {
 
           {/* Auth form card */}
           <div className="relative z-10 flex justify-center px-6">
-            <div className="w-full max-w-md rounded-xl bg-[#F3F4F6] dark:bg-[#F9FAFB]/[0.02] border border-border p-8">
+            <div className={`w-full rounded-xl bg-[#F3F4F6] dark:bg-[#F9FAFB]/[0.02] border border-border p-8
+              ${isMobile ? 'max-w-[246px]' : 'max-w-md'}
+              `}
+            >
               {/* Non-registration related messages */}
               {message && !isSuccessMessage && (
                 <div className="mb-6 p-4 rounded-lg flex items-center gap-3 bg-secondary/10 border border-secondary/20 text-secondary">
