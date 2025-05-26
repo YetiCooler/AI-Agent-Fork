@@ -130,6 +130,7 @@ export default function GoogleSignIn({ returnUrl }: GoogleSignInProps) {
         shape="pill"
         size="large"
         theme={resolvedTheme === 'dark' ? 'filled_black' : 'filled_blue'}
+        width={"100%"}
         onSuccess={async (response) => {
           // Decode the JWT token to get user info
           try {
