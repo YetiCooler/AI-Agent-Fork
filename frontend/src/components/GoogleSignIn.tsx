@@ -4,6 +4,7 @@ import { useEffect, useCallback, useRef, useState } from 'react';
 import Script from 'next/script';
 import { createClient } from '@/lib/supabase/client';
 import { useTheme } from 'next-themes';
+import { GoogleLogin } from '@react-oauth/google';
 
 // Add type declarations for Google One Tap
 declare global {
@@ -71,69 +72,28 @@ export default function GoogleSignIn({ returnUrl }: GoogleSignInProps) {
   const [isLoading, setIsLoading] = useState(false);
   const { resolvedTheme } = useTheme();
 
-  const handleGoogleSignIn = useCallback(
-    async (response: GoogleSignInResponse) => {
-      try {
-        setIsLoading(true);
-        const supabase = createClient();
+  // useEffect(() => {
+  //   // Assign the callback to window object so it can be called from the Google button
+  //   window.handleGoogleSignIn = handleGoogleSignIn;
 
-        console.log('Starting Google sign in process');
+  //   if (window.google && googleClientId) {
+  //     window.google.accounts.id.initialize({
+  //       client_id: googleClientId,
+  //       callback: handleGoogleSignIn,
+  //       use_fedcm: true,
+  //       context: 'signin',
+  //       itp_support: true,
+  //     });
+  //   }
 
-        const { error, data } = await supabase.auth.signInWithIdToken({
-          provider: 'google',
-          token: response.credential,
-        });
-
-        if (error) throw error;
-
-        console.log(
-          'Google sign in successful, preparing redirect to:',
-          returnUrl || '/',
-        );
-
-        const result = await fetch('/api/signup', {
-          method: 'POST',
-          body: JSON.stringify({ email: data.user?.email }),
-        });
-      
-        if (!result.ok) {
-          return { message: 'Could not create account' };
-        }
-        // Add a longer delay before redirecting to ensure localStorage is properly saved
-        setTimeout(() => {
-          console.log('Executing redirect now to:', returnUrl || '/');
-          window.location.href = returnUrl || '/';
-        }, 500); // Increased from 100ms to 500ms
-      } catch (error) {
-        console.error('Error signing in with Google:', error);
-        setIsLoading(false);
-      }
-    },
-    [returnUrl],
-  );
-
-  useEffect(() => {
-    // Assign the callback to window object so it can be called from the Google button
-    window.handleGoogleSignIn = handleGoogleSignIn;
-
-    if (window.google && googleClientId) {
-      window.google.accounts.id.initialize({
-        client_id: googleClientId,
-        callback: handleGoogleSignIn,
-        use_fedcm: true,
-        context: 'signin',
-        itp_support: true,
-      });
-    }
-
-    return () => {
-      // Cleanup
-      delete window.handleGoogleSignIn;
-      if (window.google) {
-        window.google.accounts.id.cancel();
-      }
-    };
-  }, [googleClientId, handleGoogleSignIn]);
+  //   return () => {
+  //     // Cleanup
+  //     delete window.handleGoogleSignIn;
+  //     if (window.google) {
+  //       window.google.accounts.id.cancel();
+  //     }
+  //   };
+  // }, [googleClientId, handleGoogleSignIn]);
 
   if (!googleClientId) {
     return (
@@ -166,58 +126,52 @@ export default function GoogleSignIn({ returnUrl }: GoogleSignInProps) {
 
   return (
     <>
-      {/* Google One Tap container */}
-      <div
-        id="g_id_onload"
-        data-client_id={googleClientId}
-        data-context="signin"
-        data-ux_mode="popup"
-        data-auto_prompt="false"
-        data-itp_support="true"
-        data-callback="handleGoogleSignIn"
-      />
+      <GoogleLogin
+        shape="pill"
+        size="large"
+        theme={resolvedTheme === 'dark' ? 'filled_black' : 'filled_blue'}
+        onSuccess={async (response) => {
+          // Decode the JWT token to get user info
+          try {
+            setIsLoading(true);
+            const supabase = createClient();
 
-      {/* Google Sign-In button container styled to match site design */}
-      <div id="google-signin-button" className="w-full h-12">
-        {/* The Google button will be rendered here */}
-      </div>
+            console.log('Starting Google sign in process');
 
-      <Script
-        src="https://accounts.google.com/gsi/client"
-        strategy="afterInteractive"
-        onLoad={() => {
-          if (window.google && googleClientId) {
-            // Style the button after Google script loads
-            const buttonContainer = document.getElementById(
-              'google-signin-button',
+            const { error, data } = await supabase.auth.signInWithIdToken({
+              provider: 'google',
+              token: response.credential,
+            });
+
+            if (error) throw error;
+
+            console.log(
+              'Google sign in successful, preparing redirect to:',
+              returnUrl || '/',
             );
-            if (buttonContainer) {
-              window.google.accounts.id.renderButton(buttonContainer, {
-                type: 'standard',
-                theme: 'filled_black',
-                size: 'large',
-                text: 'continue_with',
-                shape: 'pill',
-                logoAlignment: 'left',
-                width: buttonContainer.offsetWidth,
-              });
 
-              // Apply custom styles to match site design
-              setTimeout(() => {
-                const googleButton =
-                  buttonContainer.querySelector('div[role="button"]');
-                if (googleButton instanceof HTMLElement) {
-                  googleButton.style.borderRadius = '6px';
-                  googleButton.style.width = '100%';
-                  googleButton.style.height = '44px';
-                  googleButton.style.border = '1px solid var(--border)';
-                  googleButton.style.backgroundColor = '#111112';
-                  googleButton.style.transition = 'all 0.2s';
-                }
-              }, 100);
+            const result = await fetch('/api/signup', {
+              method: 'POST',
+              body: JSON.stringify({ email: data.user?.email }),
+            });
+
+            if (!result.ok) {
+              return { message: 'Could not create account' };
             }
+            // Add a longer delay before redirecting to ensure localStorage is properly saved
+            setTimeout(() => {
+              console.log('Executing redirect now to:', returnUrl || '/');
+              window.location.href = returnUrl || '/';
+            }, 500); // Increased from 100ms to 500ms
+          } catch (error) {
+            console.error('Error signing in with Google:', error);
+            setIsLoading(false);
           }
         }}
+        onError={() => {
+          console.log('Login Failed');
+        }}
+        useOneTap // Optional: enables Google One Tap
       />
     </>
   );

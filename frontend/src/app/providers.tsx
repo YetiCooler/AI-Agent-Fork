@@ -6,6 +6,7 @@ import { AuthProvider } from '@/components/AuthProvider';
 import { ReactQueryProvider } from '@/providers/react-query-provider';
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 import { UserProvider } from '@/contexts/UserContext';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 export interface ParsedTag {
   tagName: string;
@@ -44,13 +45,15 @@ export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <AuthProvider>
       <UserProvider>
-        <ToolCallsContext.Provider value={{ toolCalls, setToolCalls }}>
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <ReactQueryProvider dehydratedState={dehydratedState}>
-              {children}
-            </ReactQueryProvider>
-          </ThemeProvider>
-        </ToolCallsContext.Provider>
+        <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}>
+          <ToolCallsContext.Provider value={{ toolCalls, setToolCalls }}>
+            <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+              <ReactQueryProvider dehydratedState={dehydratedState}>
+                {children}
+              </ReactQueryProvider>
+            </ThemeProvider>
+          </ToolCallsContext.Provider>
+        </GoogleOAuthProvider>
       </UserProvider>
     </AuthProvider>
   );
