@@ -29,6 +29,8 @@ import {
   DialogFooter,
 } from '@/components/ui/dialog';
 
+import { useIsMobile } from '@/hooks/use-mobile';
+
 function LoginContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -43,6 +45,7 @@ function LoginContent() {
   const [isScrolling, setIsScrolling] = useState(false);
   const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
   const { scrollY } = useScroll();
+  const isMobile = useIsMobile();
 
   // Redirect if user is already logged in, checking isLoading state
   useEffect(() => {
@@ -354,7 +357,10 @@ function LoginContent() {
             <div className="absolute inset-x-1/4 top-0 h-[600px] md:h-[800px] -z-20 bg-background rounded-b-xl"></div>
 
             {/* Header content */}
-            <div className="relative z-10 pt-24 pb-8 max-w-md mx-auto h-full w-full flex flex-col gap-2 items-center justify-center">
+            <div className={`relative z-10 pt-24 pb-8 mx-auto h-full w-full flex flex-col gap-2 items-center justify-center
+              ${isMobile ? 'max-w-[312px]' : 'max-w-md'}
+              `}
+            >
               <Link
                 href="/"
                 className="group border border-border/50 bg-background hover:bg-accent/20 rounded-md text-sm h-8 px-3 flex items-center gap-2 transition-all duration-200 shadow-sm mb-6"

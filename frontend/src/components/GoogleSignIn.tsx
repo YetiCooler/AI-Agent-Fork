@@ -5,6 +5,7 @@ import Script from 'next/script';
 import { createClient } from '@/lib/supabase/client';
 import { useTheme } from 'next-themes';
 import { GoogleLogin } from '@react-oauth/google';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 // Add type declarations for Google One Tap
 declare global {
@@ -71,6 +72,7 @@ export default function GoogleSignIn({ returnUrl }: GoogleSignInProps) {
   const googleClientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
   const [isLoading, setIsLoading] = useState(false);
   const { resolvedTheme } = useTheme();
+  const isMobile = useIsMobile();
 
   // useEffect(() => {
   //   // Assign the callback to window object so it can be called from the Google button
@@ -130,7 +132,7 @@ export default function GoogleSignIn({ returnUrl }: GoogleSignInProps) {
         shape="pill"
         size="large"
         theme={resolvedTheme === 'dark' ? 'filled_black' : 'filled_blue'}
-        width={380}
+        width={isMobile ? 246 : 380}
         onSuccess={async (response) => {
           // Decode the JWT token to get user info
           try {
