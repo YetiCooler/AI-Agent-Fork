@@ -158,12 +158,12 @@ const DropDownMenu = () => {
           </div>
         </DropdownMenuContent>
       </DropdownMenu>
-      {
+      {/* {
         isOpen &&
         <div
           className={`fixed inset-0 bg-black/30 backdrop-blur-sm transition-opacity duration-500 w-screen h-screen z-20 sm:hidden`}
         />
-      }
+      } */}
     </>
   );
 };

@@ -49,7 +49,7 @@ const ChatFileMenu: React.FC<ChatFileMenuProps> = ({
                 </ShadowBtn>
             </DropdownMenuTrigger>
             <DropdownMenuContent
-                className="bg-inputBg mt-[14px] border-secondaryBorder flex flex-col gap-2 text-mainFont w-[370px]"
+                className="bg-background mt-[14px] border-secondaryBorder flex flex-col gap-2 text-mainFont w-[320px]"
                 align="start"
             >
                 <div className="w-full flex justify-between items-center px-2">

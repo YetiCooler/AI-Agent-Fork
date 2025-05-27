@@ -551,7 +551,7 @@ function LoginContent() {
               placeholder="Email address"
               value={forgotPasswordEmail}
               onChange={(e) => setForgotPasswordEmail(e.target.value)}
-              className="h-12 rounded-full bg-background border-border"
+              className="h-11 rounded-md bg-background border-border"
               required
             />
 
@@ -577,14 +577,14 @@ function LoginContent() {
             <DialogFooter className="flex sm:justify-start gap-3 pt-2">
               <button
                 type="submit"
-                className="h-12 px-6 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all shadow-md"
+                className="h-11 px-6 rounded-sm bg-primary text-primary-foreground hover:bg-primary/90 transition-all shadow-md"
               >
                 Send Reset Link
               </button>
               <button
                 type="button"
                 onClick={() => setForgotPasswordOpen(false)}
-                className="h-12 px-6 rounded-full border border-border bg-background hover:bg-accent/20 transition-all"
+                className="h-11 px-6 rounded-md border border-border bg-background hover:bg-accent/20 transition-all"
               >
                 Cancel
               </button>

@@ -380,7 +380,7 @@ const ChatHistory = () => {
                                                             setIsSidebarVisible(false);
                                                             setFiles([]);
                                                             router.push("/edith");   
-                                                        }
+                                                        }                           
                                                     }}
                                                     className={
                                                         `${session.id === sessionId ?

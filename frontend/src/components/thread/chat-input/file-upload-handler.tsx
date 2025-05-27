@@ -158,7 +158,7 @@ export const FileUploadHandler = forwardRef<
       setPendingFiles,
       setUploadedFiles,
       setIsUploading,
-      uploadedFiles,  
+      uploadedFiles,
       removeUploadedFile,
     },
     ref,
@@ -213,7 +213,10 @@ export const FileUploadHandler = forwardRef<
                   <File className="h-4 w-4" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-[300px]">
+              <DropdownMenuContent
+                className="bg-background mt-[14px] border-secondaryBorder flex flex-col gap-2 text-mainFont w-[320px]"
+                align="start"
+              >
                 <div className="w-full flex justify-between items-center px-2">
                   <div>Attached Files</div>
                   <div className="flex gap-3">
@@ -235,15 +238,15 @@ export const FileUploadHandler = forwardRef<
                 }} />
                 {uploadedFiles.map((file, index) => (
                   // <DropdownMenuItem key={index}>
-                    <div className="flex justify-between items-center p-2" key={index}>
-                      <div className="flex items-center gap-2">
-                        <File />
-                        <div className="max-w-[150px] truncate">
-                          {file.name}
-                        </div>
+                  <div className="flex justify-between items-center p-2" key={index}>
+                    <div className="flex items-center gap-2">
+                      <File />
+                      <div className="max-w-[150px] truncate">
+                        {file.name}
                       </div>
-                      <X className="cursor-pointer rounded-full p-[1px] hover:border hover:border-red-500 hover:bg-red-500 hover:text-white transition-all duration-150" onClick={() => removeUploadedFile(index)} />
                     </div>
+                    <X className="cursor-pointer rounded-full p-[1px] hover:border hover:border-red-500 hover:bg-red-500 hover:text-white transition-all duration-150" onClick={() => removeUploadedFile(index)} />
+                  </div>
                   // </DropdownMenuItem>
                 ))}
               </DropdownMenuContent>

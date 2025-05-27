@@ -37,7 +37,7 @@ const ChatArea = () => {
           <UserPrompt prompt={chat.prompt} />
           <div className="flex justify-start flex-col gap-3">
             <div className="flex items-center gap-2">
-              <div className={`w-10 h-10 rounded-lg border border-gray-500 bg-[#181818] relative`}>
+              <div className={`w-10 h-10 relative`}>
                 <Image
                   src="/logo-ryxen.svg"
                   alt="chat loading"

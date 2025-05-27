@@ -192,8 +192,8 @@ function DashboardContent() {
               <TooltipContent>New Agent</TooltipContent>
             </Tooltip>
           </div>
-          <div className='absolute top-6 left-1/2 -translate-x-1/2 transform z-10 flex items-center gap-1'>
-            <div className={`mr-2`}>
+          <div className='absolute top-8 left-1/2 -translate-x-1/2 transform z-10 flex items-center gap-1'>
+            {/* <div className={`mr-2`}>
               <Image
                 src="/logo-ryxen.svg"
                 alt="logo"
@@ -204,7 +204,7 @@ function DashboardContent() {
                   router.push("/");
                 }}
               />
-            </div>
+            </div> */}
             <DropDownMenu />
           </div>
           <div className='absolute top-4 right-4 z-10'>
@@ -299,6 +299,19 @@ function DashboardContent() {
           </p>
         </div>
 
+        <div className='max-sm:hidden'>
+          <ChatInput
+            ref={chatInputRef}
+            onSubmit={handleSubmit}
+            loading={isSubmitting}
+            placeholder="Describe what you need help with..."
+            value={inputValue}
+            onChange={setInputValue}
+            hideAttachments={false}
+          />
+        </div>
+      </div>
+      <div className='sm:hidden absolute bottom-0 left-1/2 -translate-x-1/2 transform z-10 w-full'>
         <ChatInput
           ref={chatInputRef}
           onSubmit={handleSubmit}
