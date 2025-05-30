@@ -1,9 +1,11 @@
-import Image from 'next/image';
+import Image from "next/image";
 
 const DeepseekModelIcon = () => {
     return (
-        <Image src="/image/model/deepseek.webp" alt="Deepseek" width={30} height={30} />
-    );
-};
+        <div>
+            <Image src="/image/model/deepseek.webp" className="rounded-md" alt="deepseek" width={30} height={30} />
+        </div>
+    )
+}
 
 export default DeepseekModelIcon;

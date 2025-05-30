@@ -72,6 +72,8 @@ export async function signUp(prevState: any, formData: FormData) {
     },
   });
 
+  console.log(error);
+
   if (error) {
     return { message: error.message || 'Could not create account' };
   }

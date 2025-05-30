@@ -12,11 +12,24 @@ import { ChevronDown, Search } from "lucide-react";
 import ClaudeModelIcon from "../assets/models/ClaudeModelIcon";
 import OpenaiModelIcon from "../assets/models/OpenaiModelIcon";
 import AtlasModelIcon from "../assets/models/AtlasModelIcon";
+import DeepseekModelIcon from "../assets/models/DeepseekModelIcon";
+import MistralModelIcon from "../assets/models/MistralModelIcon";
+import GemmaModelIcon from "../assets/models/GemmaModelIcon";
+import MetaModelIcon from "../assets/models/MetaModelIcon";
+import NousModelIcon from "../assets/models/NousModelIcon";
+import QwenModelIcon from "../assets/models/QwenModelIcon";
+import TngModelIcon from "../assets/models/TngModelIcon";
+import LlamaModelIcon from "../assets/models/LlamaModelIcon";
+import ArliaiModelIcon from "../assets/models/ArliaiModelIcon";
+import NvidiaModelIcon from "../assets/models/NvidiaModelIcon";
+import OpengvlabModelIcon from "../assets/models/OpengvlabModelIcon";
+import MoonshotModelIcon from "../assets/models/MoonshotModelIcon";
+import GeminiModelIcon from "../assets/models/GeminiModelIcon";
+import QwerkyModelIcon from "../assets/models/QwerkyModelIcon";
 import { useUser } from "@/contexts/UserContext";
 import React from "react";
 
 const getModelIcon = (type: string) => {
-    console.log(type);
     switch (type) {
         case "anthropic":
             return <ClaudeModelIcon />;
@@ -24,6 +37,34 @@ const getModelIcon = (type: string) => {
             return <OpenaiModelIcon />;
         case "edith":
             return <AtlasModelIcon />;
+        case "deepseek":
+            return <DeepseekModelIcon />;
+        case "mistral":
+            return <MistralModelIcon />;
+        case "gemma":
+            return <GemmaModelIcon />;
+        case "meta":
+            return <MetaModelIcon />;
+        case "nous":
+            return <NousModelIcon />;
+        case "qwen":
+            return <QwenModelIcon />;
+        case "tng":
+            return <TngModelIcon />;
+        case "llama":
+            return <LlamaModelIcon />;
+        case "arliai":
+            return <ArliaiModelIcon />;
+        case "nvidia":
+            return <NvidiaModelIcon />;
+        case "opengvlab":
+            return <OpengvlabModelIcon />;
+        case "moonshot":
+            return <MoonshotModelIcon />;
+        case "gemini":
+            return <GeminiModelIcon />;
+        case "qwerky":
+            return <QwerkyModelIcon />;
         default:
             return null;
     }
@@ -144,31 +185,32 @@ const ModelItem = (
     return (
         <div
             className={
-                `border border-transparent flex gap-2 items-center cursor-pointer hover:border-[#2C2B3080] hover:bg-[#FFFFFF05] focus:border-[#2C2B3080] focus:bg-[#FFFFFF05] px-3 py-2 rounded-md relative
-                ${!isActive && "opacity-50"}`
+                `border border-transparent flex gap-2 items-center cursor-pointer hover:border-[#2C2B3080] hover:bg-[#FFFFFF05] focus:border-[#2C2B3080] focus:bg-[#FFFFFF05] px-3 py-2 rounded-md relative`
             }
             onClick={() => isActive && handleItemClick(item._id)}
         >
             {
-                getModelIcon(item.provider)
+                getModelIcon(item.iconType)
             }
-            <span className="text-[12px] sm:text-[16px] text-nowrap text-white flex flex-col">
-                {item.name}
+            <span className={`text-[14px] text-nowrap text-white flex flex-col gap-[2px]`}>
+                <div className={`${!isActive && "opacity-50"} h-[20px] flex items-center`}>
+                    {item.name}
+                </div>
                 {
                     !isActive && (
-                        <div className="sm:hidden bg-[#FFFFFF0D] text-white text-xs p-[1px] rounded-md -mt-1">
+                        <div className="bg-[#FFFFFF0D] text-[#ffffff5e] text-xs p-[2px] rounded-md w-fit h-[20px]">
                             Not available on the free plan.
                         </div>
                     )
                 }
             </span>
-            {
+            {/* {
                 !isActive && (
                     <div className="max-sm:hidden absolute top-1/2 right-[18px] transform -translate-y-1/2 bg-[#FFFFFF0D] text-white text-xs px-3 py-1 rounded-md">
                         Not available on the free plan.
                     </div>
                 )
-            }
+            } */}
         </div>
     );
 };
